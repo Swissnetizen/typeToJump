@@ -31,13 +31,14 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       # keys
       k = @game.input.keyboard
       m = Phaser.Keyboard
-      if (k.isDown m.SPACEBAR) and @body.onFloor()
-        console.log "YUMP"
-        @body.velocity.y = -250
+      @jump if (k.isDown m.SPACEBAR) and @body.onFloor()
     reSpawn: ->
       console.log "DANGER"
       x = @game.level.spawnPoint.x
       y = @game.level.spawnPoint.y
       @reset x, y
       @setup()
+    jump: ->
+      @body.velocity.y = -250
+
 
