@@ -21,12 +21,19 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @game = game
       super game, x, y, "player"
       @setup()
+      @anchor.set 0.5, 0.5
     setup: ->
       @body.velocity.x = 100
-      @body.gravity.y = 50
+      @body.gravity.y = 500
     update: =>
       @reSpawn() if @game.physics.arcade.collide this, @game.dangerLayer
       @game.physics.arcade.collide this, @game.floor
+      # keys
+      k = @game.input.keyboard
+      m = Phaser.Keyboard
+      if (k.isDown m.SPACEBAR) and @body.onFloor()
+        console.log "YUMP"
+        @body.velocity.y = -250
     reSpawn: ->
       console.log "DANGER"
       x = @game.level.spawnPoint.x

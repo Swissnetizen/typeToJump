@@ -30,7 +30,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     dangerLayer.debug = game.globals.debug
     #set collisions
     map.setCollision 3, yes, floor
-    map.setCollisionBetween 1, 3, yes, dangerLayer
+    map.setCollisionBetween 1, 4, yes, dangerLayer
     game.physics.arcade.enable [dangerLayer, floor]
     # set var
     game.dangerLayer = dangerLayer
