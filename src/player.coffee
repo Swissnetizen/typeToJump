@@ -20,9 +20,17 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
     constructor: (game, x, y) ->
       @game = game
       super game, x, y, "player"
+      @setup()
+    setup: ->
       @body.velocity.x = 100
       @body.gravity.y = 50
-    update: () =>
-      @die if @game.physics.arcade.collide this, @game.dangerLayer
+    update: =>
+      @reSpawn() if @game.physics.arcade.collide this, @game.dangerLayer
       @game.physics.arcade.collide this, @game.floor
+    reSpawn: ->
+      console.log "DANGER"
+      x = @game.level.spawnPoint.x
+      y = @game.level.spawnPoint.y
+      @reset x, y
+      @setup()
 
