@@ -22,5 +22,5 @@ define ["Phaser"], (Phaser) ->
     constructor: (game, x, y, key, frame) ->
       super game, x, y, key, frame
       @game = game
-      @game.physics.arcade.enable this, @game.global.debug
       @game.add.existing this
+      @game.physics.arcade.enable this

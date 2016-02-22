@@ -7,4 +7,5 @@ define ["Phaser", "loadLevel"], (Phaser, levelLoader) ->
       @game.level = {}
       levelLoader @game, "map"
     update: ->
+      @game.player.update() if @game.player
   return exports

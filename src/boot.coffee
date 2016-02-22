@@ -7,7 +7,7 @@ define ["Phaser"], (Phaser) ->
       return
     create: ->
       # Set a background color and the physics system
-      @game.stage.backgroundColor = "#3498db"
+      @game.stage.backgroundColor = "#000000"
       @game.physics.startSystem Phaser.Physics.ARCADE
       @game.state.start "load"
       return

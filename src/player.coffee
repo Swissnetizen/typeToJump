@@ -20,3 +20,9 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
     constructor: (game, x, y) ->
       @game = game
       super game, x, y, "player"
+      @body.velocity.x = 100
+      @body.gravity.y = 50
+    update: () =>
+      @die if @game.physics.arcade.collide this, @game.dangerLayer
+      @game.physics.arcade.collide this, @game.floor
+

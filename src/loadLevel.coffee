@@ -23,16 +23,23 @@ define ["Phaser", "player"], (Phaser, Player) ->
     return no unless game.cache.checkTilemapKey mapName
     map = game.add.tilemap mapName
     map.addTilesetImage "tileset"
-    layer = map.createLayer "layer"
-#    layer.anchor.setTo 0.5, 0.5
-    map.setCollisionBetween 1, 3
-   # game.physics.arcade.convertTilemap map, layer
+    floor = map.createLayer "floor"
+    dangerLayer = map.createLayer "dangerLayer"
+    # set debug
+    floor.debug = game.globals.debug
+    dangerLayer.debug = game.globals.debug
+    #set collisions
+    map.setCollision 3, yes, floor
+    map.setCollisionBetween 1, 3, yes, dangerLayer
+    game.physics.arcade.enable [dangerLayer, floor]
+    # set var
+    game.dangerLayer = dangerLayer
+    game.floor = floor
     game.map = map
-    game.layer = layer
-    makeObjects game, game.map, game.layer
+    makeObjects game, game.map
     yes
   #loops through objects layer
-  makeObjects = (game, map, layer) ->
+  makeObjects = (game, map) ->
     return unless map.objects.objects
     objects = map.objects.objects 
     for object in objects
