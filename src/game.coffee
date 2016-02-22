@@ -13,6 +13,11 @@ require ["Phaser", "boot", "load", "menu", "play"], (Phaser, boot, load, menu, p
     width: 740
     height: 260
     debug: off
+    deleteOptions:
+      delOne: off
+      delAll: on
+      autoDelAll: off
+      autoDelOne: off
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState
