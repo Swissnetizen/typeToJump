@@ -21,6 +21,14 @@ define ["Phaser"], (Phaser) ->
       # ...
       return
     create: ->
+      game.input.keyboard.addKeyCapture([
+        Phaser.Keyboard.UP,
+        Phaser.Keyboard.DOWN, 
+        Phaser.Keyboard.LEFT, 
+        Phaser.Keyboard.RIGHT,
+        Phaser.Keyboard.SPACEBAR,
+        Phaser.Keyboard.BACKSPACE
+      ])
       @game.state.start "menu"
       return
   return exports
