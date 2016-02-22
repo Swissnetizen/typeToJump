@@ -46,6 +46,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     game.level.wordList = []
     wordList = JSON.parse mapWordList if mapWordList
     game.level.wordList = wordList
+    game.level.wordsUsed = 0
   #loops through objects layer
   makeObjects = (game, map) ->
     return unless map.objects.objects
