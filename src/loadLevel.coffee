@@ -23,6 +23,12 @@ define ["Phaser", "player"], (Phaser, Player) ->
     return no unless game.cache.checkTilemapKey mapName
     map = game.add.tilemap mapName
     map.addTilesetImage "tileset"
+    game.map = map
+    makeLayers game, map
+    makeObjects game, map
+    makeWordList game, map
+    yes
+  makeLayers = (game, map) ->
     floor = map.createLayer "floor"
     dangerLayer = map.createLayer "dangerLayer"
     # set debug
@@ -33,11 +39,13 @@ define ["Phaser", "player"], (Phaser, Player) ->
     map.setCollisionBetween 1, 4, yes, dangerLayer
     game.physics.arcade.enable [dangerLayer, floor]
     # set var
-    game.dangerLayer = dangerLayer
-    game.floor = floor
-    game.map = map
-    makeObjects game, game.map
-    yes
+    game.level.dangerLayer = dangerLayer
+    game.level.floor = floor
+  makeWordList = (game, map) ->
+    mapWordList = map.properties.wordList
+    game.level.wordList = []
+    wordList = JSON.parse mapWordList if mapWordList
+    game.level.wordList = wordList
   #loops through objects layer
   makeObjects = (game, map) ->
     return unless map.objects.objects

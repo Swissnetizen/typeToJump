@@ -23,11 +23,11 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @setup()
       @anchor.set 0.5, 0.5
     setup: ->
-      @body.velocity.x = 100
+      @body.velocity.x = 175
       @body.gravity.y = 500
     update: =>
-      @reSpawn() if @game.physics.arcade.collide this, @game.dangerLayer
-      @game.physics.arcade.collide this, @game.floor
+      @reSpawn() if @game.physics.arcade.collide this, @game.level.dangerLayer
+      @game.physics.arcade.collide this, @game.level.floor
       # keys
       k = @game.input.keyboard
       m = Phaser.Keyboard
