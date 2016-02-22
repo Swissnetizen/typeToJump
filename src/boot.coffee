@@ -3,7 +3,7 @@ define ["Phaser"], (Phaser) ->
   exports = {}
   exports.BootState = class BootState extends Phaser.State
     preload: ->
-      @game.load.image "progressBar", "assets/progressBar.png"
+      @game.load.image "progressBar", "assets/graphics/progressBar.png"
       return
     create: ->
       # Set a background color and the physics system

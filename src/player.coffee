@@ -15,12 +15,8 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###
-define ["Phaser"], (Phaser) ->
-  "use strict"
-  exports = class Actor extends Phaser.Sprite
-    isActor: yes
-    constructor: (game, x, y, key, frame) ->
-      super game, x, y, key, frame
+define ["Phaser", "actor"], (Phaser, Actor) ->
+  exports = class Player extends Actor
+    constructor: (game, x, y) ->
       @game = game
-      @game.physics.arcade.enable this, @game.global.debug
-      @game.add.existing this
+      super game, x, y, "player"

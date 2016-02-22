@@ -6,9 +6,12 @@ requirejs.config (
 )
 require ["Phaser", "boot", "load", "menu", "play"], (Phaser, boot, load, menu, play) ->
   "use strict"
-  window.game = new Phaser.Game(750, 250, Phaser.AUTO, "gameDiv")
+  window.game = new Phaser.Game(740, 260, Phaser.AUTO, "gameDiv")
   # Our "globals" variable
-  game.globals = score: 0
+  game.globals = 
+    score: 0
+    width: 740
+    height: 260
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState

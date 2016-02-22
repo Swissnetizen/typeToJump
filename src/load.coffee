@@ -14,10 +14,10 @@ define ["Phaser"], (Phaser) ->
       @game.load.setPreloadSprite progressBar
       # Load all assets
       #graphics
-
       @game.load.spritesheet "mute", "assets/graphics/muteButton.png", 28, 22
       @game.load.image "tileset", "assets/graphics/tileset.png"
       @game.load.image "player", "assets/graphics/player.png"
+      @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
       # ...
       return
     create: ->
