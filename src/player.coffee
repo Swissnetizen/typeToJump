@@ -23,7 +23,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @setup()
       @anchor.set 0.5, 0.5
     setup: ->
-      @body.velocity.x = 175
+      @body.velocity.x = 137.5
       @body.gravity.y = 500
     update: =>
       @reSpawn() if @game.physics.arcade.collide this, @game.level.dangerLayer
@@ -39,6 +39,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @reset x, y
       @setup()
     jump: ->
+      return unless @body.onFloor()
       @body.velocity.y = -250
 
 
