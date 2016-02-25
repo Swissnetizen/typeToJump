@@ -1,31 +1,45 @@
 define ["Phaser"], (Phaser) ->
   class Grid extends Phaser.Sprite
-    constructor: (game, x, y, w, h, sW, sH) ->
-      super game, x, y, "mute"
+    ###
+      Properties =
+        maxW
+        maxH
+        sprite:
+          w
+          h
+        maxSprites
+          x
+          y
+          total
+    ###
+    constructor: (game, x, y, properties) ->
+      super game, x, y
       @game = game
       @game.add.existing this
       @anchor.set 0.5, 0.5
-      @maxSpritesX = Math.floor (w / sW)
-      @maxSpritesY = Math.floor (h / sH)
-      @w = w
-      @h = h
-      @sprite =
-        w: sW
-        h: sH
+      @computeValues properties
+    computeValues: (p) ->
+      @maxSprites = p.maxSprites or {}
+      @maxSprites.x = Math.floor (p.maxW / p.sprite.w) unless @maxSprites.x?
+      @maxSprites.y = Math.floor (p.maxH / p.sprite.h) unless @maxSprites.y?
+      @maxW = p.maxW
+      @maxH = p.maxH
+      @sprite = p.sprite
+      @sprite.padding = {x: 0, y: 0} unless @sprite.padding?
     topLeftCoords: =>
         x: @x - @x/2
         y: @y - @h/2
     makeGridItem: (game, x, y, i) ->
       new Phaser.Sprite(game, x, y, "player")
-    render: =>
+    render: ->
       y = 0
       i = 0
-      while y < @maxSpritesY
+      while y < @maxSprites.y
         x = 0
-        while x < @maxSpritesX
-          sX = x * @sprite.w + @sprite.w/2 - @x/2
-          sY = y * @sprite.h + @sprite.h/2 - @y/2
-          sprite = @makeGridItem game, sX, sY
+        while x < @maxSprites.x
+          sX = x * @sprite.w + @sprite.w/2 - @maxW/2
+          sY = y * @sprite.h + @sprite.h/2 - @maxH/2 
+          sprite = @makeGridItem game, sX, sY, i
           sprite.anchor.set 0.5, 0.5
           @addChild sprite
           x += 1

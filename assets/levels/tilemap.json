@@ -4,7 +4,37 @@
          "draworder":"topdown",
          "height":13,
          "name":"guide",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":9,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":20,
+                 "x":60,
+                 "y":140
+                }, 
+                {
+                 "height":100,
+                 "id":10,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":620,
+                 "x":60,
+                 "y":40
+                }],
          "offsetx":0,
          "offsety":-60,
          "opacity":1,
@@ -70,7 +100,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":5,
+ "nextobjectid":11,
  "orientation":"orthogonal",
  "properties":
     {

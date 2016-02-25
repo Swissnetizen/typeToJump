@@ -17,7 +17,10 @@ define ["Phaser"], (Phaser) ->
       @game.load.spritesheet "mute", "assets/graphics/muteButton.png", 28, 22
       @game.load.image "tileset", "assets/graphics/tileset.png"
       @game.load.image "player", "assets/graphics/player.png"
+      @game.load.image "tilemap", "assets/levels/minimap/tilemap.png"
       @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
+      @game.load.image "bgNormal", "assets/graphics/bgNormal.png"
+      @game.load.image "bgSelected", "assets/graphics/bgSelected.png"
       # ...
       return
     create: ->
