@@ -21,6 +21,8 @@ define ["Phaser"], (Phaser) ->
       @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
       @game.load.image "bgNormal", "assets/graphics/bgNormal.png"
       @game.load.image "bgSelected", "assets/graphics/bgSelected.png"
+      @game.load.image "textBlockNormal", "assets/graphics/textBlockNormal.png"
+      @game.load.image "textBlockSelected", "assets/graphics/textBlockSelected.png"
       # ...
       return
     create: ->

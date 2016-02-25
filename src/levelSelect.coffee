@@ -11,31 +11,39 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
             w: 129
             h: 50
       )
-      @grid.makeGridItem = (game, x, y, i) ->
+    levelSelect: (button) =>
+      game.state.start "play"
+    whenOver: (button) =>
+      console.log "OVER"
+      button.children[0].loadTexture "textBlockSelected"
+      button.parent.loadTexture "bgSelected"
+    whenOut: (button) =>
+      console.log  "OUT !!"
+      button.children[0].loadTexture "textBlockNormal"
+      button.parent.loadTexture "bgNormal"
+    create: ->
+      @grid.makeGridItem = (game, x, y, i) =>
         container = @game.add.sprite x, y, "bgNormal"
         container.anchor.set 0.5, 0.5
-        sprite = @game.add.button 0, 0, "tilemap", ->
-          console.log i+1
-          game.state.start "play"
-        sprite.input.useHandCursor = on
-        sprite.anchor.set 0.5, 0.5
-        container.addChild sprite
-        
-        rect = game.make.bitmapData 32, 32
-        rect.ctx.fillStyle = "#FFFFFF"
-        rect.ctx.fillRect 0, 0, 32, 32
-        box = game.add.sprite 30, 0, rect
+        button = @game.add.button 0, 0, "tilemap", @levelSelect 
+        button.onInputOver.add @whenOver
+        button.onInputOut.add @whenOut
+        button.input.useHandCursor = on
+        button.levelNumber = i+1
+        button.anchor.set 0.5, 0.5
+        container.addChild button
+
+        box = game.add.sprite 30, 0, "textBlockNormal"
         box.anchor.set 0.5, 0.5
-        sprite.addChild box
+        button.addChild box
 
         label = @game.add.text 30, 0, i + 1 + "", {
           font: "30px Futura"
           fill: "#000000"
         }
         label.anchor.set 0.5, 0.5
-        sprite.addChild label
+        button.addChild label
 
         container
       @grid.render()
-    create: ->
      # game.state.start "play"
