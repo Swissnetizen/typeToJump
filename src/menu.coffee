@@ -4,6 +4,7 @@ define ["Phaser"], (Phaser) ->
   exports.MenuState = class MenuState extends Phaser.State
     create: ->
       # Name of the @game
+      @game.world.setBounds 0, 0, @game.globals.width, @game.globals.height
       nameLabel = @game.add.text(@game.world.centerX, 80, "Name",
         font: "50px Arial"
         fill: "#ffffff")

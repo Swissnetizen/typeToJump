@@ -25,6 +25,8 @@ define ["Phaser"], (Phaser) ->
       @game.load.image "textBlockSelected", "assets/graphics/textBlockSelected.png"
       @game.load.image "selector", "assets/graphics/selector.png"
       @game.load.image "lockedLevel", "assets/graphics/lockedLevel.png"
+      @game.load.image "backButton", "assets/graphics/backButton.png"
+      @game.load.image "backButtonSelected", "assets/graphics/backButton.png"
       # ...
       return
     create: ->

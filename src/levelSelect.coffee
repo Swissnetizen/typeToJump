@@ -18,7 +18,9 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
         container.anchor.set 0.5, 0.5
         container.levelNumber = i+1
         ## Button
-        button = @game.add.button 0, 0, "tilemap", @levelSelect 
+        graphic = "lockedLevel"
+        graphic = "tilemap" if i is 0
+        button = @game.add.button 0, 0, graphic, @levelSelect 
         button.onInputOver.add @whenOver
         button.onInputOut.add @whenOut
         button.levelNumber = i+1
@@ -47,11 +49,15 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       button.parent.loadTexture "bgNormal"
     create: ->
       @game.input.keyboard.addCallbacks this, null, @whenPress
-      #@game.world.setBounds -@grid.maxW/2, -@grid.maxH/2, @grid.maxW/2, @grid.maxH/2 
+      @game.world.setBounds 0, 0, @grid.maxW/2, @grid.maxH/2 
       @grid.render() 
       @makeSelector() 
       @game.camera.focusOnXY 300, 100
       @game.camera.follow @selector
+      @makeBackButton()
+    makeBackButton: ->
+      @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
+      @backButton = @game.add.button 10, 10, "backButton", @exit 
     makeSelector: ->
       x = @grid.structure[0][0].worldPosition.x
       y = @grid.structure[0][0].worldPosition.y
@@ -62,6 +68,8 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
     update: ->
       @selector.x = @grid.structure[@level.y][@level.x].worldPosition.x
       @selector.y = @grid.structure[@level.y][@level.x].worldPosition.y
+    exit: =>
+      @game.state.start "menu"
     whenPress: (keyInfo) ->
       code = keyInfo.keyCode
       newCoords = [@level.x, @level.y]
