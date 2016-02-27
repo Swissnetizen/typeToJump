@@ -50,10 +50,10 @@ define ["Phaser"], (Phaser) ->
             sY = y * @sprite.h + @sprite.h/2 - @maxH/2 
             sprite = @makeGridItem game, sX, sY, i
             sprite.anchor.set 0.5, 0.5
-            sprite.i = i
+            sprite.gridNumber = i
             @addChild sprite
             @structure[y].push sprite
-            @coordStructure[y].push [sX, sY]
+            @coordStructure[y].push [sX, sY, i]
             x += 1
             i += 1
           y += 1

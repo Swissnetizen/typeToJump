@@ -8,7 +8,7 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       c = @coordStructure[x][y]
       @selector = @makeSelector game, c[0], c[1]
       @selector.anchor.set 0.5, 0.5
-      @level = {x: x, y: y}
+      @level = {x: x, y: y, number: c[2]}
       @addChild @selector
       @game.input.keyboard.addCallbacks this, null, @whenPress
     whenPress: (keyInfo) ->
@@ -26,12 +26,12 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       else if code is m.RIGHT
         newCoords[0] = @level.x + 1
       else if code is m.ENTER or code is m.SPACEBAR
-        @levelSelect()
+        @pressEvent @level if @pressEvent
       console.log newCoords
       if @coordExists newCoords[0], newCoords[1]
         @level.x = newCoords[0]
         @level.y = newCoords[1]
-        @level.number = @structure[@level.y][@level.x].levelNumber
+        @level.number = @structure[@level.y][@level.x].gridNumber
         s = @structure[@level.y][@level.x]
         @selector.reset s.x, s.y
     makeSelector: (game, x, y) ->
