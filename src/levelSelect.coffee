@@ -12,6 +12,7 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
           sprite:
             w: 134
             h: 50
+          selector: on
       )
       @grid.makeGridItem = (game, x, y, i) =>
         container = @game.add.sprite x, y, "bgNormal"
@@ -48,46 +49,11 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       button.children[0].loadTexture "textBlockNormal"
       button.parent.loadTexture "bgNormal"
     create: ->
-      @game.input.keyboard.addCallbacks this, null, @whenPress
       @game.world.setBounds 0, 0, @grid.maxW/2, @grid.maxH/2 
-      @grid.render() 
-      @makeSelector() 
-      @game.camera.focusOnXY 300, 100
-      @game.camera.follow @selector
+      @grid.render()
       @makeBackButton()
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
       @backButton = @game.add.button 10, 10, "backButton", @exit 
-    makeSelector: ->
-      x = @grid.structure[0][0].worldPosition.x
-      y = @grid.structure[0][0].worldPosition.y
-      @selector = game.add.sprite x, y, "selector"
-      @selector.anchor.set 0.5, 0.5
-      @level = {x: 0, y: 0}
-     # @grid.addChild @selector
-    update: ->
-      @selector.x = @grid.structure[@level.y][@level.x].worldPosition.x
-      @selector.y = @grid.structure[@level.y][@level.x].worldPosition.y
     exit: =>
       @game.state.start "menu"
-    whenPress: (keyInfo) ->
-      code = keyInfo.keyCode
-      newCoords = [@level.x, @level.y]
-      m = Phaser.Keyboard
-      if code is m.UP
-        console.log "UP"
-        newCoords[1] = @level.y - 1
-      else if code is m.DOWN
-        newCoords[1] = @level.y + 1
-        console.log "DOWN"
-      else if code is m.LEFT
-        newCoords[0] = @level.x - 1
-      else if code is m.RIGHT
-        newCoords[0] = @level.x + 1
-      else if code is m.ENTER or code is m.SPACEBAR
-        @levelSelect()
-      console.log newCoords
-      if @grid.coordExists newCoords[0], newCoords[1]
-        @level.x = newCoords[0]
-        @level.y = newCoords[1]
-        @level.number = @grid.structure[@level.y][@level.x].levelNumber
