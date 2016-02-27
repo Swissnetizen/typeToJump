@@ -1,4 +1,4 @@
-define ["Phaser", "grid"], (Phaser, Grid) ->
+define ["Phaser", "gridSelector"], (Phaser, Grid) ->
   class LevelSelect extends Phaser.State
     preload: ->
       @game = game
