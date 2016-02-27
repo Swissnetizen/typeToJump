@@ -7,6 +7,9 @@ define ["Phaser"], (Phaser) ->
       loadingLabel = @game.add.text(game.world.centerX, 150, "loading...",
         font: "30px Arial"
         fill: "#ffffff")
+      loadingLabel = @game.add.text(game.world.centerX, 75, "swissnetizen.ch",
+        font: "50px Arial"
+        fill: "#ffffff")
       loadingLabel.anchor.setTo 0.5, 0.5
       # Add a progress bar
       progressBar = @game.add.sprite(game.world.centerX, 200, "progressBar")
@@ -16,7 +19,6 @@ define ["Phaser"], (Phaser) ->
       #graphics
       @game.load.spritesheet "mute", "assets/graphics/muteButton.png", 28, 22
       @game.load.image "tilemap", "assets/levels/minimap/tilemap.png"
-      
       @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
       @loadImages()
       # ...
@@ -45,7 +47,7 @@ define ["Phaser"], (Phaser) ->
         "lockedLevel",
         "backButton",
         "backButtonSelected",
-        ".layer",
+        "player",
         "tileset"
       ]
 
