@@ -2,7 +2,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
   class LevelSelect extends Phaser.State
     preload: ->
       @game = game
-      @grid =  new Grid(
+      @grid = new Grid(
         game, 
         @game.globals.width/2,
         @game.globals.height/2, 
