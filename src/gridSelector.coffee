@@ -6,7 +6,7 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
     render: (x=0, y=0, fn) ->
       super fn
       c = @coordStructure[x][y]
-      @selector = @makeSelector c[0], c[1]
+      @selector = @makeSelector game, c[0], c[1]
       @selector.anchor.set 0.5, 0.5
       @level = {x: x, y: y}
       @addChild @selector
@@ -34,5 +34,5 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
         @level.number = @structure[@level.y][@level.x].levelNumber
         s = @structure[@level.y][@level.x]
         @selector.reset s.x, s.y
-    makeSelector: (x, y) ->
-      @game.add.sprite x, y, "selector"
+    makeSelector: (game, x, y) ->
+      game.add.sprite x, y, "selector"
