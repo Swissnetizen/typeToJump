@@ -1,6 +1,7 @@
 define ["Phaser", "grid"], (Phaser, Grid) ->
   class LevelSelect extends Phaser.State
     preload: ->
+      @game = game
       @grid =  new Grid(
         game, 
         @game.globals.width/2,
@@ -8,20 +9,9 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
           maxW: 620
           maxH: 100
           sprite:
-            w: 129
+            w: 134
             h: 50
       )
-    levelSelect: (button) =>
-      game.state.start "play"
-    whenOver: (button) =>
-      console.log "OVER"
-      button.children[0].loadTexture "textBlockSelected"
-      button.parent.loadTexture "bgSelected"
-    whenOut: (button) =>
-      console.log  "OUT !!"
-      button.children[0].loadTexture "textBlockNormal"
-      button.parent.loadTexture "bgNormal"
-    create: ->
       @grid.makeGridItem = (game, x, y, i) =>
         container = @game.add.sprite x, y, "bgNormal"
         container.anchor.set 0.5, 0.5
@@ -46,4 +36,42 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
 
         container
       @grid.render()
-     # game.state.start "play"
+    levelSelect: (button) =>
+      game.state.start "play"
+    whenOver: (button) =>
+      button.children[0].loadTexture "textBlockSelected"
+      button.parent.loadTexture "bgSelected"
+    whenOut: (button) =>
+      button.children[0].loadTexture "textBlockNormal"
+      button.parent.loadTexture "bgNormal"
+    create: ->
+      @makeSelector()
+      @game.input.keyboard.addCallbacks this, null, @whenPress
+    makeSelector: ->
+      x = @grid.structure[0][0].worldPosition.x
+      y = @grid.structure[0][0].worldPosition.y
+      @selector = game.add.image x, y, "selector"
+      @selector.anchor.set 0.5, 0.5
+      @level = {x: 0, y: 0}
+    update: ->
+      @selector.x = @grid.structure[@level.y][@level.x].worldPosition.x
+      @selector.y = @grid.structure[@level.y][@level.x].worldPosition.y
+    whenPress: (keyInfo) ->
+      console.log "PRESS"
+      code = keyInfo.keyCode
+      newCoords = [@level.x, @level.y]
+      m = Phaser.Keyboard
+      if code is m.UP
+        console.log "UP"
+        newCoords[1] = @level.y - 1
+      else if code is m.DOWN
+        newCoords[1] = @level.y + 1
+        console.log "DOWN"
+      else if code is m.LEFT
+        newCoords[0] = @level.x - 1
+      else if code is m.RIGHT
+        newCoords[0] = @level.x + 1
+      console.log newCoords
+      if @grid.coordExists newCoords[0], newCoords[1]
+        @level.x = newCoords[0]
+        @level.y = newCoords[1]

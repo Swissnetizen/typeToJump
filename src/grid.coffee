@@ -31,10 +31,12 @@ define ["Phaser"], (Phaser) ->
         y: @y - @h/2
     makeGridItem: (game, x, y, i) ->
       new Phaser.Sprite(game, x, y, "player")
-    render: ->
+    render: (fn) ->
+      @structure = []
       y = 0
       i = 0
       while y < @maxSprites.y
+        @structure.push []
         x = 0
         while x < @maxSprites.x
           sX = x * @sprite.w + @sprite.w/2 - @maxW/2
@@ -42,8 +44,15 @@ define ["Phaser"], (Phaser) ->
           sprite = @makeGridItem game, sX, sY, i
           sprite.anchor.set 0.5, 0.5
           @addChild sprite
+          @structure[y].push sprite
           x += 1
           i += 1
         y += 1
+      fn() if fn
+    coordExists: (x, y) ->
+      try
+        @structure[y][x]?
+      catch
+        no
 
 
