@@ -33,7 +33,6 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       m = Phaser.Keyboard
       @jump if (k.isDown m.SPACEBAR) and @body.onFloor()
     reSpawn: ->
-      console.log "DANGER"
       x = @game.level.spawnPoint.x
       y = @game.level.spawnPoint.y
       @reset x, y

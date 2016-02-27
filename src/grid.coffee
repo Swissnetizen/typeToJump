@@ -20,10 +20,15 @@ define ["Phaser"], (Phaser) ->
       @computeValues properties
     computeValues: (p) ->
       @maxSprites = p.maxSprites or {}
-      @maxSprites.x = Math.floor (p.maxW / p.sprite.w) unless @maxSprites.x?
-      @maxSprites.y = Math.floor (p.maxH / p.sprite.h) unless @maxSprites.y?
-      @maxW = p.maxW
-      @maxH = p.maxH
+      if p.maxW and p.maxH
+        @maxSprites.x = Math.floor (p.maxW / p.sprite.w) unless @maxSprites.x?
+        @maxSprites.y = Math.floor (p.maxH / p.sprite.h) unless @maxSprites.y?
+        @maxW = p.maxW
+        @maxH = p.maxH
+      else if p.maxSprites.x and p.maxSprites.y
+        @maxSprites = p.maxSprites
+        @maxW = @maxSprites.x * p.sprite.w
+        @maxH = @maxSprites.y * p.sprite.h
       @sprite = p.sprite
       @sprite.padding = {x: 0, y: 0} unless @sprite.padding?
     topLeftCoords: =>
@@ -43,6 +48,7 @@ define ["Phaser"], (Phaser) ->
           sY = y * @sprite.h + @sprite.h/2 - @maxH/2 
           sprite = @makeGridItem game, sX, sY, i
           sprite.anchor.set 0.5, 0.5
+          sprite.i = i
           @addChild sprite
           @structure[y].push sprite
           x += 1
