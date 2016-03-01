@@ -12,22 +12,20 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       @addChild @selector
       @game.input.keyboard.addCallbacks this, null, @whenPress
     whenPress: (keyInfo) ->
+      return if @game.keyPressDisabled 
       code = keyInfo.keyCode
       newCoords = [@level.x, @level.y]
       m = Phaser.Keyboard
       if code is m.UP
-        console.log "UP"
         newCoords[1] = @level.y - 1
       else if code is m.DOWN
         newCoords[1] = @level.y + 1
-        console.log "DOWN"
       else if code is m.LEFT
         newCoords[0] = @level.x - 1
       else if code is m.RIGHT
         newCoords[0] = @level.x + 1
       else if code is m.ENTER or code is m.SPACEBAR
         @pressEvent @level if @pressEvent
-      console.log newCoords
       if @coordExists newCoords[0], newCoords[1]
         @level.x = newCoords[0]
         @level.y = newCoords[1]
