@@ -4,6 +4,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
   exports.MenuState = class MenuState extends Phaser.State
     create: ->
       # Name of the @game
+      console.log "CREATED"
       @game.world.setBounds 0, 0, @game.globals.width, @game.globals.height
       nameLabel = @game.add.text(@game.world.centerX, 80, "Name",
         font: "50px Arial"
@@ -15,7 +16,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
       if @game.sound.mute
         @muteButton.frame = 1
       # Start the @game when the up arrow key is pressed
-      @grid =  new Grid(
+      @grid = new Grid(
         game, 
         @game.globals.width/2,
         @game.globals.height/2 + 50, 
@@ -45,7 +46,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
     makeButton: (game, x, y, i) ->
       texts = [
         "Play"
-        "💬🗺🌍"
+        "eo en fr"
         "Credits"
       ]
       rect = game.make.bitmapData 124, 40

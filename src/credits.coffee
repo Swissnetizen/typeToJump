@@ -8,6 +8,7 @@ define ["Phaser"], (Phaser) ->
 * There are two extra terms for the GPL
 => This whole program is licensed under the GPL≥3
       """
+      @created = yes
       label = @game.add.text 30, 0, credits, {
           font: "20px Futura"
           fill: "#FFFFFF"
@@ -24,4 +25,10 @@ define ["Phaser"], (Phaser) ->
       returnLabel.anchor.set 0.5, 0.5
       console.log "HI"
       @game.input.keyboard.addCallbacks this, ->
+        return unless @created
+        @created = no
+        @game.keyPressDisabled = yes
+        setTimeout(=>
+          @game.keyPressDisabled = no
+        , 750)
         @game.state.start "menu"
