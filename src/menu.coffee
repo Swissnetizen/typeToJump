@@ -28,7 +28,6 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
           selector: on
       )
       @grid.makeGridItem = @makeButton
-      @grid.render 0, 0
       @grid.pressEvent = (info) =>
         switch info.number
           when 0
@@ -36,7 +35,8 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
           when 1
             console.log "langu"
           when 2
-            console.log "credits"
+            @game.state.start "credits"
+      @grid.render 0, 0
       return
     toggleSound: ->
       @game.sound.mute = !@game.sound.mute
