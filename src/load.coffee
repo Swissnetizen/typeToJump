@@ -49,6 +49,7 @@ define ["Phaser"], (Phaser) ->
         "backButtonSelected",
         "player",
         "tileset"
+        "caret"
       ]
 
   return exports

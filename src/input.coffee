@@ -7,9 +7,16 @@ define ["Phaser"], (Phaser) ->
         fill: "#FFFFFF"
       @wordLabel = @game.add.text x, y, "HAI", textStyle
       @wordLabel.anchor.set 0.5, 0.5
+      @setLabelText()
+      #Input box
       @inputText = @game.add.text x, y+45, "", textStyle
       @inputText.anchor.set 0.5, 0.5
-      @setLabelText()
+      @inputBox = @game.add.sprite x, y+45, "selector"
+      @inputBox.anchor.set 0.5, 0.5
+      #Caret
+      @caret = @game.add.sprite x, y+45, "caret"
+      @caret.anchor.set 0.5, 0.5
+      @caret.standardX = x
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     setLabelText: ->
       unless @game.level.wordList[@game.level.wordsUsed]?
@@ -33,6 +40,7 @@ define ["Phaser"], (Phaser) ->
       if @inputText.text == @wordLabel.text
         @game.player.jump()
         @nextWord()
+      @updateCaretPosition()
     whenBS: (a) =>
       g = @game.globals.deleteOptions
       if a.keyCode == 8
@@ -40,6 +48,7 @@ define ["Phaser"], (Phaser) ->
           @inputText.text = @inputText.text.substr 0, @inputText.text.length-1 
         else if g.delAll
           @inputText.text = ""
+        @updateCaretPosition()
     nextWord: ->
       @game.level.wordsUsed += 1
       @setLabelText()
@@ -47,3 +56,5 @@ define ["Phaser"], (Phaser) ->
     nextChar: ->
       inputLength = @inputText.text.length
       @wordLabel.text.substr inputLength, 1
+    updateCaretPosition: ->
+      @caret.x = @caret.standardX + @inputText.width/2
