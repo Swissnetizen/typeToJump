@@ -17,8 +17,8 @@ define ["Phaser"], (Phaser) ->
       @wordLabel.text = @game.level.wordList[@game.level.wordsUsed]
     whenPress: (a, b, c, d, e) =>
       key = b.key
-      console.log @nextChar()
       g = @game.globals.deleteOptions 
+      return if key is "Enter" or key is "Tab"
       if key is @nextChar() and (g.autoDelAll or g.autoDelOne)
         @inputText.text += key
       else if key isnt @nextChar() and g.autoDelAll
