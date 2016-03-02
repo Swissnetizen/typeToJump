@@ -29,37 +29,42 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
           selector: on
       )
       @grid.makeGridItem = @makeButton
-      @grid.pressEvent = (info) =>
-        switch info.number
-          when 0
-            @start()
-          when 1
-            console.log "langu"
-          when 2
-            @game.state.start "credits"
+      @grid.pressEvent = @pressEvent
       @grid.render 0, 0
       return
     toggleSound: ->
       @game.sound.mute = !@game.sound.mute
       @muteButton.frame = if @game.sound.mute then 1 else 0
       return
-    makeButton: (game, x, y, i) ->
+    makeButton: (game, x, y, i) =>
       texts = [
         "Play"
         "eo en fr"
         "Credits"
       ]
-      rect = game.make.bitmapData 124, 40
-      rect.ctx.fillStyle = '#ffFFFF'
-      rect.ctx.fillRect 0, 0, 124, 40
-      b = new Phaser.Button game, x, y, rect
+      b = new Phaser.Button game, x, y, "bgNormal", @pressEvent
+      b.onInputOver.add @whenOver
+      b.onInputOut.add @whenOut
       b.anchor.set 0.5, 0.5
+      b.number = i
       text = game.add.text 0, 0, texts[i], {
         font: "30px Futura"
       }
       text.anchor.set 0.5, 0.5
       b.addChild text
       b
+    whenOver: (button) =>
+      button.loadTexture "bgSelected"
+    whenOut: (button) =>
+      button.loadTexture "bgNormal"
+    pressEvent: (info) =>
+      switch info.number
+        when 0
+          @start()
+        when 1
+          console.log "langu"
+        when 2
+          @game.state.start "credits"
     start: ->
       @game.state.start "levelSelect"
       return
