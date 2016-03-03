@@ -1,4 +1,4 @@
-define ["Phaser"], (Phaser) ->
+define ["Phaser", "caret"], (Phaser, Caret) ->
   exports = class InputBox
     constructor: (game, x, y) ->
       @game = game
@@ -14,12 +14,7 @@ define ["Phaser"], (Phaser) ->
       @inputBox = @game.add.sprite x, y+45, "selector"
       @inputBox.anchor.set 0.5, 0.5
       #Caret
-      @caret = @game.add.sprite x, y+45, "caret"
-      @caret.anchor.set 0.5, 0.5
-      @caret.standardX = x
-      @caret.timer = @game.time.create off
-      @caret.timer.loop 1000, @updateCaretVisibility
-      @caret.timer.start()
+      @caret = new Caret(game, x, y+45)
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     setLabelText: ->
       unless @game.level.wordList[@game.level.wordsUsed]?
@@ -60,7 +55,4 @@ define ["Phaser"], (Phaser) ->
       inputLength = @inputText.text.length
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
-      @caret.x = @caret.standardX + @inputText.width/2
-    updateCaretVisibility: =>
-      console.log "UV"
-      @caret.visible = not @caret.visible
+      @caret.offsetPositionBy @inputText.width/2
