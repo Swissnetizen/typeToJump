@@ -17,6 +17,9 @@ define ["Phaser"], (Phaser) ->
       @caret = @game.add.sprite x, y+45, "caret"
       @caret.anchor.set 0.5, 0.5
       @caret.standardX = x
+      @caret.timer = @game.time.create off
+      @caret.timer.loop 1000, @updateCaretVisibility
+      @caret.timer.start()
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     setLabelText: ->
       unless @game.level.wordList[@game.level.wordsUsed]?
@@ -58,3 +61,6 @@ define ["Phaser"], (Phaser) ->
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
       @caret.x = @caret.standardX + @inputText.width/2
+    updateCaretVisibility: =>
+      console.log "UV"
+      @caret.visible = not @caret.visible
