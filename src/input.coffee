@@ -7,12 +7,12 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
         fill: "#FFFFFF"
       @wordLabel = @game.add.text x, y, "HAI", textStyle
       @wordLabel.anchor.set 0.5, 0.5
-      @setLabelText()
       #Input box
       @inputText = @game.add.text x, y+45, "", textStyle
       @inputText.anchor.set 0.5, 0.5
       @inputBox = @game.add.sprite x, y+45, "selector"
       @inputBox.anchor.set 0.5, 0.5
+      @setLabelText()
       #Caret
       @caret = new Caret(game, x, y+45)
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
@@ -20,6 +20,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       unless @game.level.wordList[@game.level.wordsUsed]?
         @game.level.wordsUsed = 0
       @wordLabel.text = @game.level.wordList[@game.level.wordsUsed]
+      @inputBox.width = @wordLabel.width
     whenPress: (a, b, c, d, e) =>
       key = b.key
       g = @game.globals.deleteOptions 
