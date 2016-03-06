@@ -10,14 +10,12 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       #Input box
       textStyle =
         font: "40px Futura"
-        fill: "#00FF00"
-        text-decoration: "underline"
+        fill: "#00CC00"
       @inputText = @game.add.text x, y, "", textStyle
       @inputText.anchor.set 0, 0.5
       @inputText.standardX = x
       @setLabelText()
       #Caret
-      @caret = new Caret(game, x, y)
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     setLabelText: ->
       unless @game.level.wordList[@game.level.wordsUsed]?
@@ -59,4 +57,4 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       inputLength = @inputText.text.length
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
-      @caret.offsetPositionBy @inputText.width/2
+      @caret.offsetPositionBy @inputText.width/2 if @caret
