@@ -4,7 +4,7 @@ requirejs.config (
     paths: 
       Phaser:   "../phaser"
 )
-require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits"], (Phaser, boot, load, menu, play, LevelSelect, CreditsState) ->
+require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "langSelect"], (Phaser, boot, load, menu, play, LevelSelect, CreditsState, langSelect) ->
   "use strict"
   window.game = new Phaser.Game(740, 260, Phaser.AUTO, "gameDiv")
   # Our "globals" variable
@@ -26,5 +26,6 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits"], (P
   game.state.add "play", new play.PlayState
   game.state.add "levelSelect", new LevelSelect
   game.state.add "credits", new CreditsState
+  game.state.add "langSelect", new langSelect
   # Start the "boot" state
   game.state.start "boot"
