@@ -15,9 +15,9 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits"], (P
     debug: off
     deleteOptions:
       delOne: off
-      delAll: on
+      delAll: off
       autoDelAll: off
-      autoDelOne: off
+      autoDelOne: on
       autoNext: off
   # Define states
   game.state.add "boot", new boot.BootState
