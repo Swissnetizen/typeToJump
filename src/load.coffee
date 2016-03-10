@@ -39,16 +39,24 @@ define ["Phaser"], (Phaser) ->
       return
     setupL10n: ->
       @game.l10n = @game.cache.getJSON "l10n"
-      @game.lang = "en"
-      @game.getL10n = (name, type) =>
+      @loadL10nDefault()
+      @game.getL10nString = (name, type) =>
         try
           @game.l10n[@game.lang][type][name]
-        catch error
-          error
+        catch 
+          "⃤?Nenia teksto"
       @game.menuL10n = (name) =>
-        @game.l10n[@game.lang].menu[name]
+        @game.getL10nString name, "menu"
       @game.levelL10n = (number) =>
-        @game.l10n[@game.lang].level[number]
+        @game.getL10nString name, "level"
+    loadL10nDefault: ->
+      # retrieve from local storage (to view in Chrome, Ctrl+Shift+J -> Resources -> Local Storage)
+      str = window.localStorage.getItem "lang"
+      # error checking, localstorage might not exist yet at first time start up
+      if str and str.length is 2
+        @game.lang = str
+      else
+        @game.lang = "en"
     loader: (type, baseDir, prefix, extension, assets) ->
       for asset in assets
         @game.load[type] prefix + asset, baseDir + asset + extension

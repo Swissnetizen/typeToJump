@@ -58,6 +58,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
           @game.lang = "eo"
         when 2
           @game.lang = "fr"
+      window.localStorage.setItem "lang", @game.lang
       @start()
     start: ->
       @game.state.start "menu"
