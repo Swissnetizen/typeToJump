@@ -2,6 +2,7 @@
 define ["Phaser", "gridSelector"], (Phaser, Grid) -> 
   exports = {}
   exports.MenuState = class MenuState extends Phaser.State
+    preload: ->
     create: ->
       # Name of the @game
       console.log "CREATED"
@@ -38,9 +39,9 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
       return
     makeButton: (game, x, y, i) =>
       texts = [
-        "Play"
-        "eo en fr"
-        "Credits"
+        @game.menuL10n "play"
+        @game.menuL10n "lang"
+        @game.menuL10n "credits"
       ]
       b = new Phaser.Button game, x, y, "bgNormal", @pressEvent
       b.onInputOver.add @whenOver
