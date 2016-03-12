@@ -27,6 +27,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     makeLayers game, map
     makeObjects game, map
     makeWordList game, map
+    makeText game
     yes
   makeLayers = (game, map) ->
     floor = map.createLayer "floor"
@@ -63,6 +64,15 @@ define ["Phaser", "player"], (Phaser, Player) ->
           game.player = new Player(game, object.x, object.y)
         else
           console.warn "Undefined object type: " + object.type
+  makeText = (game) ->
+    text = game.levelL10n 1
+    game.level.label = game.add.text game.globals.width/2, 50, text, {
+        font: "25px Futura"
+        fill: "#FFFFFF"
+        wordWrap: on
+        wordWrapWidth: game.globals.width/2
+      }
+    game.level.label.anchor.set 0.5, 0.5
   makeEndMarker = (game, map, object) ->
 
   exports

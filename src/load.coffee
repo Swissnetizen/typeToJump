@@ -44,11 +44,14 @@ define ["Phaser"], (Phaser) ->
         try
           @game.l10n[@game.lang][type][name]
         catch 
-          "⃤?Nenia teksto"
+          undefined
       @game.menuL10n = (name) =>
         @game.getL10nString name, "menu"
       @game.levelL10n = (number) =>
-        @game.getL10nString name, "level"
+        text = @game.getL10nString number, "level"
+        console.log text
+        return "" unless text?
+        return text
     loadL10nDefault: ->
       # retrieve from local storage (to view in Chrome, Ctrl+Shift+J -> Resources -> Local Storage)
       str = window.localStorage.getItem "lang"
