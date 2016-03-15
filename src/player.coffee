@@ -50,7 +50,6 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
         Phaser.Easing.Linear.None
       )
       @jumpAnimation.start()
-      console.log "W"
       @body.velocity.y = -250
     endLevel: ->
       console.log "END LEVEL"
