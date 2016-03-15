@@ -31,7 +31,8 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       # keys
       k = @game.input.keyboard
       m = Phaser.Keyboard
-      @jump if (k.isDown m.SPACEBAR) and @body.onFloor()
+      # @jump() if (k.isDown m.SPACEBAR) and @body.onFloor()
+      @endLevel() if @game.physics.arcade.intersects this.body, @game.level.end.body
     reSpawn: ->
       x = @game.level.spawnPoint.x
       y = @game.level.spawnPoint.y
@@ -40,5 +41,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
     jump: ->
       return unless @body.onFloor()
       @body.velocity.y = -250
+    endLevel: ->
+      console.log "END LEVEL"
 
 

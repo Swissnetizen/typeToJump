@@ -26,6 +26,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     game.map = map
     makeLayers game, map
     makeObjects game, map
+    makeEndMarker game, map, {"name":"","type":"endMarker","x":660,"y":0,"width":20,"height":260,"visible":true,"rotation":0,"properties":{},"rectangle":true}
     makeWordList game, map
     makeText game
     yes
@@ -56,6 +57,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
       type = object.type
       switch (object.type)
         when "endMarker"
+          continue #remove to restart production
           makeEndMarker game, map, object
         when "spawn"
           game.level.spawnPoint = 
@@ -74,5 +76,11 @@ define ["Phaser", "player"], (Phaser, Player) ->
       }
     game.level.label.anchor.set 0.5, 0.5
   makeEndMarker = (game, map, object) ->
-
+    x = object.x + (object.width/2)
+    # correct Y; tiled has the Y on the bottom-left
+    y = object.y + (object.height/2)
+    marker = game.add.sprite x, y
+    game.physics.arcade.enable marker
+    marker.tileType = "end"
+    game.level.end = marker
   exports
