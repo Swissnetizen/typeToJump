@@ -46,8 +46,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
   makeWordList = (game, map) ->
     number = map.properties.wordList or 1
     wordList = game.getL10nString number, "wordList"
-    game.level.wordList = []
-    game.level.wordList = wordList
+    game.level.wordList = wordList or []
     game.level.wordList.randomise = on if map.properties.randomise or map.properties.randomize
     game.level.wordsUsed = 0
   #loops through objects layer

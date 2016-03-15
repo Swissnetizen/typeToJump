@@ -104,8 +104,8 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "randomise":"true",
-     "wordList":"1"
+     "randomise":"1",
+     "wordList":"0"
     },
  "renderorder":"right-down",
  "tileheight":20,

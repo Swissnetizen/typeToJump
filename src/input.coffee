@@ -49,12 +49,12 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
           @inputText.text = ""
         @updateCaretPosition()
     nextWord: ->
+      oldWord = @wordLabel.text
       word = ""
       if @game.level.wordList.randomise #random
         i = @game.rand.between 0, @game.level.wordList.length-1
-        console.log i
         word = @game.level.wordList[i]
-        console.log word
+        return @nextWord() if word is oldWord
       else # Ordered
         @game.level.wordsUsed += 1
         unless @game.level.wordList[@game.level.wordsUsed]?

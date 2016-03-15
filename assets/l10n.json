@@ -9,11 +9,10 @@
             "1": "Type the word to jump "
         },
         "wordList": {
-            "1": [
+            "0": [
                 "do", "re", "mi", "fa", "so",
                 "la", "ti", "do"
             ]
         }
-
     }
 }
