@@ -90,21 +90,6 @@
                  "width":0,
                  "x":60,
                  "y":120
-                }, 
-                {
-                 "height":260,
-                 "id":12,
-                 "name":"",
-                 "properties":
-                    {
-
-                    },
-                 "rotation":0,
-                 "type":"endMarker",
-                 "visible":true,
-                 "width":20,
-                 "x":660,
-                 "y":0
                 }],
          "offsetx":20,
          "offsety":-60,
@@ -119,7 +104,8 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "wordList":"[\"hi\",\"how\",\"are\",\"you\"]"
+     "randomise":"true",
+     "wordList":"1"
     },
  "renderorder":"right-down",
  "tileheight":20,

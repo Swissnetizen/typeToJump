@@ -4,10 +4,15 @@
             "play": "Play",
             "lang": "Lang",
             "credits": "Credits"
-            
         },
         "level": {
             "1": "Type the word to jump "
+        },
+        "wordList": {
+            "1": [
+                "do", "re", "mi", "fa", "so",
+                "la", "ti", "do"
+            ]
         }
 
     }

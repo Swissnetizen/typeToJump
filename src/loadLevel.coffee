@@ -44,10 +44,11 @@ define ["Phaser", "player"], (Phaser, Player) ->
     game.level.dangerLayer = dangerLayer
     game.level.floor = floor
   makeWordList = (game, map) ->
-    mapWordList = map.properties.wordList
+    number = map.properties.wordList or 1
+    wordList = game.getL10nString number, "wordList"
     game.level.wordList = []
-    wordList = JSON.parse mapWordList if mapWordList
     game.level.wordList = wordList
+    game.level.wordList.randomise = on if map.properties.randomise or map.properties.randomize
     game.level.wordsUsed = 0
   #loops through objects layer
   makeObjects = (game, map) ->
