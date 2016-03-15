@@ -10,6 +10,6 @@ define ["Phaser"], (Phaser) ->
       @game.stage.backgroundColor = "#000000"
       @game.physics.startSystem Phaser.Physics.ARCADE
       @game.state.start "load"
-      @game.rng = new Phaser.RandomDataGenerator()
+      @game.rand = new Phaser.RandomDataGenerator()
       return
   return exports

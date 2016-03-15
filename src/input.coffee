@@ -14,14 +14,13 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @inputText = @game.add.text x, y, "", textStyle
       @inputText.anchor.set 0, 0.5
       @inputText.standardX = x
-      @setLabelText()
+      @nextWord()
       #Caret
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
-    setLabelText: ->
-      unless @game.level.wordList[@game.level.wordsUsed]?
-        @game.level.wordsUsed = 0
-      @wordLabel.text = @game.level.wordList[@game.level.wordsUsed]
+    setLabelText: (word) ->
+      @wordLabel.text = word
       @inputText.reset @inputText.standardX - @wordLabel.width/2, @inputText.y
+      @inputText.text = ""
     whenPress: (a, b, c, d, e) =>
       key = b.key
       g = @game.globals.deleteOptions 
@@ -50,9 +49,18 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
           @inputText.text = ""
         @updateCaretPosition()
     nextWord: ->
-      @game.level.wordsUsed += 1
-      @setLabelText()
-      @inputText.text = ""
+      word = ""
+      if @game.level.wordList.randomise #random
+        i = @game.rand.between 0, @game.level.wordList.length-1
+        console.log i
+        word = @game.level.wordList[i]
+        console.log word
+      else # Ordered
+        @game.level.wordsUsed += 1
+        unless @game.level.wordList[@game.level.wordsUsed]?
+          @game.level.wordsUsed = 0
+        word = @game.level.wordList[@game.level.wordsUsed]
+      @setLabelText word
     nextChar: ->
       inputLength = @inputText.text.length
       @wordLabel.text.substr inputLength, 1
