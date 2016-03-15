@@ -37,9 +37,20 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       x = @game.level.spawnPoint.x
       y = @game.level.spawnPoint.y
       @reset x, y
+      @jumpAnimation.stop() if @jumpAnimation
+      @rotation = 0
       @setup()
     jump: ->
       return unless @body.onFloor()
+      @jumpAnimation = @game.add.tween(this).to(
+        {
+          angle: @angle + 180
+        }, 
+        1000, 
+        Phaser.Easing.Linear.None
+      )
+      @jumpAnimation.start()
+      console.log "W"
       @body.velocity.y = -250
     endLevel: ->
       console.log "END LEVEL"
