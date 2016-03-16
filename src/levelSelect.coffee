@@ -1,4 +1,4 @@
-define ["Phaser", "gridSelector"], (Phaser, Grid) ->
+define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
   class LevelSelect extends Phaser.State
     preload: ->
       @game = game
@@ -15,24 +15,19 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
           selector: on
       )
       @grid.makeGridItem = (game, x, y, i) =>
-        container = @game.add.sprite x, y, "bgNormal"
-        container.anchor.set 0.5, 0.5
-        container.levelNumber = i+1
+        button = new GridButton game, x, y, @levelSelect
         ## Button
-        graphic = "lockedLevel"
-        graphic = "tilemap" if i is 0
-        button = @game.add.button 0, 0, graphic, =>
-          @levelSelect container
-        button.onInputOver.add @whenOver
-        button.onInputOut.add @whenOut
-        button.levelNumber = i+1
-        button.input.useHandCursor = on
-        button.anchor.set 0.5, 0.5
-        container.addChild button
+        graphicName = "lockedLevel"
+        graphicName = "tilemap" if i is 0
+        graphic = @game.add.sprite 0, 0, graphicName
+        graphic.anchor.set 0.5, 0.5
+        button.addChild graphic
         ## Bg 4 text
         box = game.add.sprite 30, 0, "textBlockNormal"
         box.anchor.set 0.5, 0.5
         button.addChild box
+        button.onInputOver.add @whenOver
+        button.onInputOut.add @whenOut
         ## Actual text
         label = @game.add.text 30, 0, i + 1 + "", {
           font: "30px Futura"
@@ -40,42 +35,17 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
         }
         label.anchor.set 0.5, 0.5
         button.addChild label
-        container
+        button
     levelSelect: (button) =>
       console.log button
       if button.levelNumber isnt 1
-        noAnim = @game.add.tween button
-        x = button.originalCoords.x
-        y = button.originalCoords.y
-        noAnim.to(
-          {
-            x: x + 10
-          },
-          40, 
-          Phaser.Easing.Linear.None
-        )
-        noAnim.to(
-          {
-            x: x - 10
-          },
-          40, 
-          Phaser.Easing.Linear.None
-        )
-        noAnim.to(
-          {
-            x: x
-          },
-          40, 
-          Phaser.Easing.Linear.None
-        )
-        noAnim.start()
+        button.shakeAnimation()
+        return
       game.state.start "play" if button.levelNumber is 1
     whenOver: (button) =>
-      button.children[0].loadTexture "textBlockSelected"
-      button.parent.loadTexture "bgSelected"
+      button.children[1].loadTexture "textBlockSelected"
     whenOut: (button) =>
-      button.children[0].loadTexture "textBlockNormal"
-      button.parent.loadTexture "bgNormal"
+      button.children[1].loadTexture "textBlockNormal"
     create: ->
       @game.world.setBounds 0, 0, @grid.maxW/2, @grid.maxH/2 
       @grid.render()
