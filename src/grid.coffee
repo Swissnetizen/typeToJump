@@ -51,6 +51,11 @@ define ["Phaser"], (Phaser) ->
             sprite = @makeGridItem game, sX, sY, i
             sprite.anchor.set 0.5, 0.5
             sprite.gridNumber = i
+            sprite.gX = x
+            sprite.gY = y
+            sprite.originalCoords = 
+              x: sX
+              y: sY
             @addChild sprite
             @structure[y].push sprite
             @coordStructure[y].push [sX, sY, i]

@@ -21,7 +21,8 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
         ## Button
         graphic = "lockedLevel"
         graphic = "tilemap" if i is 0
-        button = @game.add.button 0, 0, graphic, @levelSelect 
+        button = @game.add.button 0, 0, graphic, =>
+          @levelSelect container
         button.onInputOver.add @whenOver
         button.onInputOut.add @whenOut
         button.levelNumber = i+1
@@ -41,7 +42,34 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
         button.addChild label
         container
     levelSelect: (button) =>
-      game.state.start "play"
+      console.log button
+      if button.levelNumber isnt 1
+        noAnim = @game.add.tween button
+        x = button.originalCoords.x
+        y = button.originalCoords.y
+        noAnim.to(
+          {
+            x: x + 10
+          },
+          40, 
+          Phaser.Easing.Linear.None
+        )
+        noAnim.to(
+          {
+            x: x - 10
+          },
+          40, 
+          Phaser.Easing.Linear.None
+        )
+        noAnim.to(
+          {
+            x: x
+          },
+          40, 
+          Phaser.Easing.Linear.None
+        )
+        noAnim.start()
+      game.state.start "play" if button.levelNumber is 1
     whenOver: (button) =>
       button.children[0].loadTexture "textBlockSelected"
       button.parent.loadTexture "bgSelected"
@@ -51,8 +79,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
     create: ->
       @game.world.setBounds 0, 0, @grid.maxW/2, @grid.maxH/2 
       @grid.render()
-      @grid.pressEvent = =>
-        @levelSelect()
+      @grid.pressEvent = @levelSelect
       @makeBackButton()
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
