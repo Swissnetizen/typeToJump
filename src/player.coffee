@@ -19,7 +19,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
   exports = class Player extends Actor
     constructor: (game, x, y) ->
       @game = game
-      super game, x, y, "player"
+      super game, x, y, "player", 1
       @setup()
       @anchor.set 0.5, 0.5
     setup: ->
@@ -31,6 +31,10 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       # keys
       k = @game.input.keyboard
       m = Phaser.Keyboard
+      if @body.onFloor() and @frame isnt 1 and @game.globals.slant
+        @frame = 1
+      else if not @body.onFloor() and @frame isnt 0 or not @game.globals.slant
+        @frame = 0
       # @jump() if (k.isDown m.SPACEBAR) and @body.onFloor()
       @endLevel() if @game.physics.arcade.intersects this.body, @game.level.end.body
     reSpawn: ->
@@ -42,14 +46,12 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @setup()
     jump: ->
       return unless @body.onFloor()
-      @jumpAnimation = @game.add.tween(this).to(
-        {
+      t = @game.add.tween this
+      t.to({
           angle: @angle + 180
-        }, 
-        1000, 
-        Phaser.Easing.Linear.None
-      )
-      @jumpAnimation.start()
+        }, 1000)
+      t.start()
+      @jumpAnimation = t
       @body.velocity.y = -250
     endLevel: ->
       console.log "END LEVEL"

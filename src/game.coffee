@@ -13,6 +13,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
     width: 740
     height: 260
     debug: off
+    slant: off
     deleteOptions:
       delOne: off
       delAll: off

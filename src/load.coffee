@@ -19,6 +19,7 @@ define ["Phaser"], (Phaser) ->
       # Load all assets
       #graphics
       @game.load.spritesheet "mute", "assets/graphics/muteButton.png", 28, 22
+      @game.load.spritesheet "player", "assets/graphics/player.png", 24, 20, 2
       @game.load.image "tilemap", "assets/levels/minimap/tilemap.png"
       @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
       @game.load.json "l10n", "assets/l10n.json"
@@ -73,7 +74,6 @@ define ["Phaser"], (Phaser) ->
         "lockedLevel",
         "backButton",
         "backButtonSelected",
-        "player",
         "tileset"
         "caret"
       ]
