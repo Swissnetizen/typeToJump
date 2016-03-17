@@ -20,6 +20,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         graphicName = "lockedLevel"
         graphicName = "tilemap" if i is 0
         graphic = @game.add.sprite 0, 0, graphicName
+        button.levelNumber = i+1
         graphic.anchor.set 0.5, 0.5
         button.addChild graphic
         ## Bg 4 text
@@ -37,7 +38,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button.addChild label
         button
     levelSelect: (button) =>
-      console.log button
+      console.log button.levelNumber
       if button.levelNumber isnt 1
         button.shakeAnimation()
         return

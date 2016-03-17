@@ -1,5 +1,5 @@
 "use strict"
-define ["Phaser", "gridSelector"], (Phaser, Grid) -> 
+define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) -> 
   exports = {}
   exports.MenuState = class MenuState extends Phaser.State
     preload: ->
@@ -43,10 +43,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
         @game.menuL10n "lang"
         @game.menuL10n "credits"
       ]
-      b = new Phaser.Button game, x, y, "bgNormal", @pressEvent
-      b.onInputOver.add @whenOver
-      b.onInputOut.add @whenOut
-      b.anchor.set 0.5, 0.5
+      b = new GridButton(game, x, y, @pressEvent)
       b.number = i
       text = game.add.text 0, 0, texts[i], {
         font: "30px Futura"
@@ -54,10 +51,6 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
       text.anchor.set 0.5, 0.5
       b.addChild text
       b
-    whenOver: (button) =>
-      button.loadTexture "bgSelected"
-    whenOut: (button) =>
-      button.loadTexture "bgNormal"
     pressEvent: (info) =>
       switch info.number
         when 0

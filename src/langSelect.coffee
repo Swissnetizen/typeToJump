@@ -1,5 +1,5 @@
 "use strict"
-define ["Phaser", "gridSelector"], (Phaser, Grid) -> 
+define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) -> 
   class LangSelect extends Phaser.State
     create: ->
       # Name of the @game
@@ -35,10 +35,7 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
         "Esperanto"
         "Français"
       ]
-      b = new Phaser.Button game, x, y, "bgNormal", @pressEvent
-      b.onInputOver.add @whenOver
-      b.onInputOut.add @whenOut
-      b.anchor.set 0.5, 0.5
+      b = new GridButton game, x, y, @pressEvent
       b.number = i
       text = game.add.text 0, 0, texts[i], {
         font: "25px Futura"
@@ -46,10 +43,6 @@ define ["Phaser", "gridSelector"], (Phaser, Grid) ->
       text.anchor.set 0.5, 0.5
       b.addChild text
       b
-    whenOver: (button) =>
-      button.loadTexture "bgSelected"
-    whenOut: (button) =>
-      button.loadTexture "bgNormal"
     pressEvent: (info) =>
       switch info.number
         when 0
