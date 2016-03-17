@@ -8,12 +8,12 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @originalCoords = 
         x: x
         y: y
-      textStyle =
-        font: "40px Futura"
-        fill: "#FFFFFF"
-      @wordLabel = @game.add.text 0, 0, "HAI", textStyle
-      @wordLabel.anchor.set 0.5, 0.5
-      @addChild @wordLabel
+      @labels = []
+      for v, i in new Array(3)
+        console.log i
+        @makeWordLabel null, null, i
+      @wordLabel = @labels[0]
+      @wordLabel.reset 0, 0
       #Input box
       textStyle =
         font: "40px Futura"
@@ -25,9 +25,41 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @nextWord()
       #Caret
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
+    makeWordLabel: (x=0, y=0, index, autoAddChild=yes) =>
+      textStyle =
+        font: "40px Futura"
+        fill: "#FFFFFF"
+      wordLabel = @game.add.text x, y, "", textStyle
+      wordLabel.anchor.set 0.5, 0.5
+      @labels.push wordLabel if autoAddChild
+      @addChild wordLabel if autoAddChild
+      wordLabel.kill()
+      wordLabel.index = index
+      wordLabel
+    nextWordLabel: (returnIndex) ->
+      index = @wordLabel.index + 1 # next index
+      index = 0 if index > 2 # no more than 4 labels
+      return index if returnIndex
+      console.log index
+      console.log @wordLabel
+      @wordLabel = @labels[index]
+      @wordLabel.reset 0, 0
+    shiftLabels: (skip) ->
+      for wordLabel in @labels
+        continue if wordLabel.health is 0 or
+          wordLabel.index is skip
+        t = @game.add.tween wordLabel
+        t.to({
+          y: wordLabel.y + 45
+          }, 40)
+        t.start()
     setLabelText: (word) ->
+      @shiftLabels @nextWordLabel yes
+      @nextWordLabel()
       @wordLabel.text = word
-      @inputText.reset @inputText.standardX - @wordLabel.width/2, @inputText.y
+      x = @inputText.standardX - @wordLabel.width/2
+      y = @inputText.y
+      @inputText.reset x, y
       @inputText.text = ""
     whenPress: (a, b, c, d, e) =>
       key = b.key
