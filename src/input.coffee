@@ -1,19 +1,27 @@
 define ["Phaser", "caret"], (Phaser, Caret) ->
-  exports = class InputBox
+  exports = class InputBox extends Phaser.Sprite
     constructor: (game, x, y) ->
+      super game, x, y
+      @anchor.set 0.5, 0.5
       @game = game
+      @game.add.existing this
+      @originalCoords = 
+        x: x
+        y: y
       textStyle =
         font: "40px Futura"
         fill: "#FFFFFF"
-      @wordLabel = @game.add.text x, y, "HAI", textStyle
+      @wordLabel = @game.add.text 0, 0, "HAI", textStyle
       @wordLabel.anchor.set 0.5, 0.5
+      @addChild @wordLabel
       #Input box
       textStyle =
         font: "40px Futura"
         fill: "#00CC00"
-      @inputText = @game.add.text x, y, "", textStyle
+      @inputText = @game.add.text 0, 0, "", textStyle
       @inputText.anchor.set 0, 0.5
-      @inputText.standardX = x
+      @inputText.standardX = 0
+      @addChild @inputText
       @nextWord()
       #Caret
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
@@ -31,7 +39,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
         @inputText.text = ""
         @nextWord() if g.autoNext
       else if key isnt @nextChar() and g.autoDelOne
-        return
+        return @shakeAnimation()
       #So when delOne or all are active
       else unless g.autoDelAll and g.autoDellOne
         @inputText.text += key
@@ -66,3 +74,17 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
       @caret.offsetPositionBy @inputText.width/2 if @caret
+    shakeAnimation: (shakiness=10, autoStart=yes) =>
+      x = @originalCoords.x
+      t = @game.add.tween this
+      t.to({
+          x: x + shakiness
+        }, 40)
+      t.to({
+          x: x - shakiness
+        }, 40)
+      t.to({
+          x: x
+        }, 40)
+      t.start() if autoStart
+      t
