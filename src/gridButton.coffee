@@ -11,6 +11,8 @@ define ["Phaser"], (Phaser) ->
       @originalCoords = 
         x: x
         y: y
+      #@onInputDown.add @downAnimation 
+      #@onInputUp.add @upAnimation
     shakeAnimation: (shakiness=10, autoStart=yes) =>
       x = @originalCoords.x
       t = @game.add.tween this
@@ -29,3 +31,19 @@ define ["Phaser"], (Phaser) ->
       @loadTexture "bgSelected"
     whenOut: (button) =>
       @loadTexture "bgNormal"
+    downAnimation: () =>
+      t = @game.add.tween this
+      t.to({
+          scale:
+            x: 0.8
+            y: 0.8
+        }, 40)
+      t.start()
+    upAnimation: () =>
+      t = @game.add.tween this
+      t.to({
+          scale:
+            x: 1
+            y: 1
+        }, 40)
+      t.start()
