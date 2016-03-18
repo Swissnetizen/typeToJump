@@ -20,9 +20,11 @@ define ["Phaser", "player"], (Phaser, Player) ->
   exports = {}
   exports = (game, mapName) ->
     # does level exist
+    game.level = {}
     return no unless game.cache.checkTilemapKey mapName
     map = game.add.tilemap mapName
     map.addTilesetImage "tileset"
+    game.level.speed = map.properties.speed #in px/s
     game.map = map
     makeLayers game, map
     makeObjects game, map

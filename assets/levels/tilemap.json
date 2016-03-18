@@ -105,6 +105,8 @@
  "properties":
     {
      "randomise":"1",
+     "spee":"",
+     "speed":"137.5",
      "wordList":"0"
     },
  "renderorder":"right-down",
