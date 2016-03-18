@@ -26,6 +26,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       #Caret
       @caret = new Caret(game, 0, 0)
       @addChild @caret
+      @updateCaretPosition()
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     makeLabel: (x=0, y=0, index, autoAddChild=yes) =>
       textStyle =
