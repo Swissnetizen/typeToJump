@@ -11,7 +11,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @labels = []
       for v, i in new Array(3)
         console.log i
-        @makeWordLabel null, null, i
+        @makeLabel null, null, i
       @wordLabel = @labels[0]
       @wordLabel.reset 0, 0
       #Input box
@@ -25,7 +25,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @nextWord()
       #Caret
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
-    makeWordLabel: (x=0, y=0, index, autoAddChild=yes) =>
+    makeLabel: (x=0, y=0, index, autoAddChild=yes) =>
       textStyle =
         font: "40px Futura"
         fill: "#FFFFFF"
@@ -36,7 +36,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       wordLabel.kill()
       wordLabel.index = index
       wordLabel
-    nextWordLabel: (returnIndex) ->
+    nextLabel: (returnIndex) ->
       index = @wordLabel.index + 1 # next index
       index = 0 if index > 2 # no more than 4 labels
       return index if returnIndex
@@ -44,18 +44,28 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       console.log @wordLabel
       @wordLabel = @labels[index]
       @wordLabel.reset 0, 0
+      @wordLabel.setStyle        
+        font: "40px Futura"
+        fill: "#FFFFFF"
     shiftLabels: (skip) ->
-      for wordLabel in @labels
-        continue if wordLabel.health is 0 or
-          wordLabel.index is skip
-        t = @game.add.tween wordLabel
+      for label in @labels
+        continue if label.health is 0 or
+          label.index is skip
+        t = @game.add.tween label
+        label.setStyle
+            fill: "#00FF00"
         t.to({
-          y: wordLabel.y + 45
-          }, 40)
+          y: label.y + 30
+          rotation: label.rotation + 2*Math.PI
+          }, 150, Phaser.Easing.Bounce.In)
+        t.onComplete.add (label) ->
+          label.setStyle
+            font: "16px Futura"
+            fill: "#00FF00"
         t.start()
     setLabelText: (word) ->
-      @shiftLabels @nextWordLabel yes
-      @nextWordLabel()
+      @shiftLabels @nextLabel yes
+      @nextLabel()
       @wordLabel.text = word
       x = @inputText.standardX - @wordLabel.width/2
       y = @inputText.y
@@ -106,9 +116,19 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
       @caret.offsetPositionBy @inputText.width/2 if @caret
-    shakeAnimation: (shakiness=10, autoStart=yes) =>
-      x = @originalCoords.x
-      t = @game.add.tween this
+    shakeAnimation: (shakiness, autoStart) =>
+      ts = [ 
+        @shakeAnimator @wordLabel, shakiness, autoStart
+        @shakeAnimator @inputText, shakiness, autoStart
+      ]
+      ts[0].onComplete.add (target) ->
+        target.x = 0
+      ts[1].onComplete.add (target) =>
+        target.x = @inputText.standardX - @wordLabel.width/2
+      ts
+    shakeAnimator: (target, shakiness=10, autoStart=yes) =>
+      x = target.x
+      t = @game.add.tween target
       t.to({
           x: x + shakiness
         }, 40)
