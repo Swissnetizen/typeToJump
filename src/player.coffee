@@ -22,11 +22,24 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       super game, x, y, "player", 1
       @setup()
       @anchor.set 0.5, 0.5
+      # Die emitter
+      emitter = game.add.emitter 0, 0, 0, 25
+      emitter.makeParticles ["player"]
+      emitter.setXSpeed 200, -200
+      emitter.setYSpeed 500, -500
+      emitter.minParticleScale = 0.2
+      emitter.maxParticleScale = 0.4
+      emitter.minRotation = 0
+      emitter.maxRotation = 100
+      emitter.width = 40
+      emitter.height = 40
+      emitter.gravity = 0
+      @emitter = emitter
     setup: ->
-      @body.velocity.x = 137.5
+      @body.velocity.x = +@game.level.speed or 1000
       @body.gravity.y = 500
     update: =>
-      @reSpawn() if @game.physics.arcade.collide this, @game.level.dangerLayer
+      @die() if @game.physics.arcade.collide this, @game.level.dangerLayer
       @game.physics.arcade.collide this, @game.level.floor
       # keys
       k = @game.input.keyboard
@@ -37,7 +50,15 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
         @frame = 0
       # @jump() if (k.isDown m.SPACEBAR) and @body.onFloor()
       @endLevel() if @game.physics.arcade.intersects this.body, @game.level.end.body
-    reSpawn: ->
+    die: ->
+      timeTaken = 300 #ms
+      respawnFaster = 100 #ms
+      @emitter.x = @x 
+      @emitter.y = @y;
+      @emitter.start true, timeTaken, null, 15
+      @kill()
+      setTimeout @reSpawn, timeTaken - respawnFaster
+    reSpawn: =>
       x = @game.level.spawnPoint.x
       y = @game.level.spawnPoint.y
       @reset x, y
