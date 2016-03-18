@@ -24,6 +24,8 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @addChild @inputText
       @nextWord()
       #Caret
+      @caret = new Caret(game, 0, 0)
+      @addChild @caret
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     makeLabel: (x=0, y=0, index, autoAddChild=yes) =>
       textStyle =
@@ -115,7 +117,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       inputLength = @inputText.text.length
       @wordLabel.text.substr inputLength, 1
     updateCaretPosition: ->
-      @caret.offsetPositionBy @inputText.width/2 if @caret
+      @caret.x = @inputText.x + @inputText.width
     shakeAnimation: (shakiness, autoStart) =>
       ts = [ 
         @shakeAnimator @wordLabel, shakiness, autoStart

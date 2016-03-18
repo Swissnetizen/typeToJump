@@ -4,7 +4,7 @@ define ["Phaser"], (Phaser) ->
       @game = game
       super @game, x, y, "caret"
       @game.add.existing this
-      @anchor.set 0.5, 0.5
+      @anchor.set 0.5, 0.6
       @standardX = x
       @timer = @game.time.create off
       @timer.loop 1000, @updateVisibility

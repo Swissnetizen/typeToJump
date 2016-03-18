@@ -6,7 +6,7 @@ define ["Phaser", "loadLevel", "input"], (Phaser, levelLoader, InputBox) ->
       @game = game
       @game.level = {}
       levelLoader @game, "map"
-      @game.level.inputBox = new InputBox game, 370, 200
+      @game.level.inputBox = new InputBox game, 370, 175
       @makeBackButton()
     update: ->
       @game.player.update() if @game.player
