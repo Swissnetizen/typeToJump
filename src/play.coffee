@@ -1,5 +1,5 @@
 "use strict"
-define ["Phaser", "loadLevel", "input"], (Phaser, levelLoader, InputBox) -> 
+define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, InputBox, CapsLock) -> 
   exports = {}
   exports.PlayState = class PlayState extends Phaser.State
     create: ->
@@ -7,9 +7,15 @@ define ["Phaser", "loadLevel", "input"], (Phaser, levelLoader, InputBox) ->
       @game.level = {}
       levelLoader @game, "map"
       @game.level.inputBox = new InputBox game, 370, 175
+      @capsLockWarning = @game.add.image 650, 160, "capsLockWarning"
+      @capsLockWarning.visible = no
       @makeBackButton()
     update: ->
       @game.player.update() if @game.player
+      if CapsLock.isOn()
+        @capsLockWarning.visible = yes
+      else
+        @capsLockWarning.visible = no
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
       @backButton = @game.add.button 10, 10, "backButton", @exit 

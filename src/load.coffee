@@ -27,13 +27,14 @@ define ["Phaser"], (Phaser) ->
       # ...
       return
     create: ->
+      k = Phaser.KeyCode
       game.input.keyboard.addKeyCapture([
-        Phaser.Keyboard.UP,
-        Phaser.Keyboard.DOWN, 
-        Phaser.Keyboard.LEFT, 
-        Phaser.Keyboard.RIGHT,
-        Phaser.Keyboard.SPACEBAR,
-        Phaser.Keyboard.BACKSPACE
+        k.UP
+        k.DOWN 
+        k.LEFT 
+        k.RIGHT
+        k.SPACEBAR
+        k.BACKSPACE
       ])
       @setupL10n()
       @game.state.start "menu"
@@ -66,16 +67,17 @@ define ["Phaser"], (Phaser) ->
         @game.load[type] prefix + asset, baseDir + asset + extension
     loadImages: () ->
       @loader "image", "assets/graphics/", "", ".png", [
-        "bgNormal",
-        "bgSelected",
-        "textBlockNormal",
-        "textBlockSelected",
-        "selector",
-        "lockedLevel",
-        "backButton",
-        "backButtonSelected",
+        "bgNormal"
+        "bgSelected"
+        "textBlockNormal"
+        "textBlockSelected"
+        "selector"
+        "lockedLevel"
+        "backButton"
+        "backButtonSelected"
         "tileset"
         "caret"
+        "capsLockWarning"
       ]
 
   return exports
