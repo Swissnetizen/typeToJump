@@ -88,6 +88,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       #Applies to all cases
       if @inputText.text == @wordLabel.text
         @game.player.jump()
+        @game.playSound "right"
         @nextWord()
       @updateCaretPosition()
     whenBS: (a) =>
@@ -117,6 +118,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
     updateCaretPosition: ->
       @caret.x = @inputText.x + @inputText.width
     shakeAnimation: (shakiness, autoStart) =>
+      @game.playSound "wrong"
       ts = [ 
         @shakeAnimator @wordLabel, shakiness, autoStart
         @shakeAnimator @inputText, shakiness, autoStart
