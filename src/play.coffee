@@ -4,7 +4,8 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
   exports.PlayState = class PlayState extends Phaser.State
     create: ->
       @game = game
-      @game.level = {}
+      @game.level =
+        number: @game.levelNumber or 0
       levelLoader @game, "level" + @game.levelNumber
       @game.level.inputBox = new InputBox game, 370, 175
       @capsLockWarning = @game.add.image 650, 160, "capsLockWarning"

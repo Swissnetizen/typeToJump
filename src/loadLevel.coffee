@@ -19,8 +19,8 @@ define ["Phaser", "player"], (Phaser, Player) ->
   "use strict"
   exports = {}
   exports = (game, mapName) ->
-    # does level exist
-    game.level = {}
+    # does level exist 
+    game.level = {} unless game.level
     return no unless game.cache.checkTilemapKey mapName
     map = game.add.tilemap mapName
     map.addTilesetImage "tileset"
@@ -80,8 +80,11 @@ define ["Phaser", "player"], (Phaser, Player) ->
   makeEndMarker = (game, map, object) ->
     x = object.x + (object.width/2)
     # correct Y; tiled has the Y on the bottom-left
-    y = object.y + (object.height/2)
-    marker = game.add.sprite x, y
+    y = object.y - (object.height/2)
+    rect = game.make.bitmapData object.width, object.height
+    rect.ctx.fillStyle = "rgba(0, 0, 0, 0);"
+    rect.ctx.fillRect 0, 0, object.width, object.height
+    marker = game.add.sprite x, y, rect
     game.physics.arcade.enable marker
     marker.tileType = "end"
     game.level.end = marker

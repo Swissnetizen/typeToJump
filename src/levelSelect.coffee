@@ -17,10 +17,10 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @grid.makeGridItem = (game, x, y, i) =>
         button = new GridButton game, x, y, @levelSelect
         ## Button
-        unlocked = @game.playerData.levelsComplete[i]
+        unlocked = @game.playerData.levelsComplete[i-1]
         graphicName = "levelMinimap" + i
         graphicName = "lockedLevel" unless unlocked or i is 0
-        graphic = @game.add.sprite -62, 0, "levelMinimap0"
+        graphic = @game.add.sprite -62, 0, graphicName
         button.levelNumber = i
         graphic.anchor.set 0, 0.5
         button.addChild graphic
@@ -40,7 +40,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button
     levelSelect: (button) =>
       n = button.levelNumber
-      unless @game.playerData.levelsComplete[n] or n is 0
+      unless @game.playerData.levelsComplete[n-1] or n is 0
         button.shakeAnimation()
         return
       @game.levelNumber = button.levelNumber

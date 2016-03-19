@@ -78,6 +78,13 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       #sound
       @game.playSound "jump"
     endLevel: ->
-      console.log "END LEVEL"
+      console.log "bitch please"
+      completed = @game.playerData.levelsComplete
+      completed[@game.level.number] = true
+      @game.playerData.write {
+        levelsComplete: completed
+      }
+      @game.levelNumber = @game.level.number + 1
+      @game.state.start "play"
 
 
