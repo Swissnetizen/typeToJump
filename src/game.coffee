@@ -23,6 +23,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
     sounds:
       jump: 6
       select: 4
+      die: 4
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState

@@ -80,15 +80,18 @@ define ["Phaser"], (Phaser) ->
         "caret"
         "capsLockWarning"
       ]
+    generateNames: (prefix, number) ->
+      names = []
+      for v, i in new Array(number)
+        names.push prefix + i
+      names
     loadAudio: () ->
-      jumps = []
-      for v, i in new Array(@game.globals.sounds.jump)
-        jumps.push "jump" + i
-      selects = []
-      for v, i in new Array(@game.globals.sounds.select)
-        selects.push "select" + i
+      soundList = @game.globals.sounds
+      sounds = []
+      for key of soundList
+        newSounds = @generateNames key, soundList[key]
+        sounds = sounds.concat newSounds
       @loader "audio", "assets/sounds/", "", ".wav", [
         "right"
-      ].concat(jumps).concat(selects)
-
+      ].concat sounds
   return exports
