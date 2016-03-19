@@ -44,4 +44,5 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       @[key] = revision[key]
     console.log @
   game.playerData.write.bind game.playerData
+  game.playerData.levelsComplete = [true, true, true, true, true, true, true, true, true, true]
 

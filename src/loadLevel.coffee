@@ -72,7 +72,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
         else
           console.warn "Undefined object type: " + object.type
   makeText = (game) ->
-    text = game.levelL10n 1
+    text = game.levelL10n game.level.number
     game.level.label = game.add.text game.globals.width/2, 50, text, {
         font: "25px Futura"
         fill: "#FFFFFF"
