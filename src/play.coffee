@@ -15,12 +15,16 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @game.add.text 620, 200, @game.level.number+1 + "/" + @game.globals.levels,
         fill: "#FFFFFF"
         font: "25px Futura"
+      @deaths = @game.add.text 100, 200, "0",
+        fill: "#FFFFFF"
+        font: "25px Futura"
     update: ->
       @game.player.update() if @game.player
       if CapsLock.isOn()
         @capsLockWarning.visible = yes
       else
         @capsLockWarning.visible = no
+      @deaths.text = @game.playerData.deaths
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
       @backButton = @game.add.button 10, 10, "backButton", @exit 

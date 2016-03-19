@@ -40,6 +40,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
   game.state.start "boot"
   game.playerData = 
     levelsComplete: new Array(game.globals.levels)
+    deaths: 0
   game.playerData.write = (revision) ->
     for key in revision
       @[key] = revision[key]

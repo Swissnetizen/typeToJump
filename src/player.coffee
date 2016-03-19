@@ -58,6 +58,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @emitter.y = @y;
       @emitter.start true, timeTaken, null, 15
       @kill()
+      @game.playerData.deaths= @game.playerData.deaths + 1
       setTimeout @reSpawn, timeTaken - respawnFaster
     reSpawn: =>
       x = @game.level.spawnPoint.x
@@ -81,9 +82,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       console.log "bitch please"
       completed = @game.playerData.levelsComplete
       completed[@game.level.number] = true
-      @game.playerData.write {
-        levelsComplete: completed
-      }
+      @game.playerData.levelsComplete= completed
       @game.levelNumber = @game.level.number + 1
       @game.state.start "play"
 
