@@ -7,7 +7,7 @@ define ["Phaser"], (Phaser) ->
       @anchor.set 0.5, 0.6
       @standardX = x
       @timer = @game.time.create off
-      @timer.loop 1000, @updateVisibility
+      @timer.loop 500, @updateVisibility
       @timer.start()
     offsetPositionBy: (w) ->
       @x = @standardX + w
