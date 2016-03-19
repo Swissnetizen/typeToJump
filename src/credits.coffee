@@ -23,7 +23,6 @@ define ["Phaser"], (Phaser) ->
           wordWrapWidth: 720
         }
       returnLabel.anchor.set 0.5, 0.5
-      console.log "HI"
       @game.input.keyboard.addCallbacks this, ->
         return unless @created
         @created = no

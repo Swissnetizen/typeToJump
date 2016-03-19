@@ -24,6 +24,7 @@ define ["Phaser"], (Phaser) ->
       @game.load.tilemap "map", "assets/levels/tilemap.json", null, Phaser.Tilemap.TILED_JSON
       @game.load.json "l10n", "assets/l10n.json"
       @loadImages()
+      @loadAudio()
       # ...
       return
     create: ->
@@ -79,5 +80,15 @@ define ["Phaser"], (Phaser) ->
         "caret"
         "capsLockWarning"
       ]
+    loadAudio: () ->
+      jumps = []
+      for v, i in new Array(@game.globals.sounds.jump)
+        jumps.push "jump" + i
+      selects = []
+      for v, i in new Array(@game.globals.sounds.select)
+        selects.push "select" + i
+      @loader "audio", "assets/sounds/", "", ".wav", [
+        "right"
+      ].concat(jumps).concat(selects)
 
   return exports

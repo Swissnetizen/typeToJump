@@ -74,6 +74,10 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       t.start()
       @jumpAnimation = t
       @body.velocity.y = -250
+      #sound
+      number = @game.rand.between 0, @game.globals.sounds.jump - 1
+      console.log number
+      @game.sound.play "jump" + number
     endLevel: ->
       console.log "END LEVEL"
 

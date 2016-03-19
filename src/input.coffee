@@ -10,7 +10,6 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
         y: y
       @labels = []
       for v, i in new Array(3)
-        console.log i
         @makeLabel null, null, i
       @wordLabel = @labels[0]
       @wordLabel.reset 0, 0
@@ -43,8 +42,6 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       index = @wordLabel.index + 1 # next index
       index = 0 if index > 2 # no more than 4 labels
       return index if returnIndex
-      console.log index
-      console.log @wordLabel
       @wordLabel = @labels[index]
       @wordLabel.reset 0, 0
       @wordLabel.setStyle        
