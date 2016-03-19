@@ -5,7 +5,7 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
     create: ->
       @game = game
       @game.level = {}
-      levelLoader @game, "level" + 0
+      levelLoader @game, "level" + @game.levelNumber
       @game.level.inputBox = new InputBox game, 370, 175
       @capsLockWarning = @game.add.image 650, 160, "capsLockWarning"
       @capsLockWarning.visible = no

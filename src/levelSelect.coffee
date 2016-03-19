@@ -17,15 +17,16 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @grid.makeGridItem = (game, x, y, i) =>
         button = new GridButton game, x, y, @levelSelect
         ## Button
-        graphicName = "lockedLevel"
-        graphicName = "levelMinimap" + i if i is 0
-        graphic = @game.add.sprite 0, 0, graphicName
-        button.levelNumber = i+1
-        graphic.anchor.set 0.5, 0.5
+        unlocked = @game.playerData.levelsComplete[i]
+        graphicName = "levelMinimap" + i
+        graphicName = "lockedLevel" unless unlocked or i is 0
+        graphic = @game.add.sprite -62, 0, "levelMinimap0"
+        button.levelNumber = i
+        graphic.anchor.set 0, 0.5
         button.addChild graphic
         ## Bg 4 text
-        box = game.add.sprite 30, 0, "textBlockNormal"
-        box.anchor.set 0.5, 0.5
+        box = game.add.sprite 62, 0, "textBlockNormal"
+        box.anchor.set 1, 0.5
         button.addChild box
         button.onInputOver.add @whenOver
         button.onInputOut.add @whenOut
@@ -38,11 +39,12 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button.addChild label
         button
     levelSelect: (button) =>
-      console.log button.levelNumber
-      if button.levelNumber isnt 1
+      n = button.levelNumber
+      unless @game.playerData.levelsComplete[n] or n is 0
         button.shakeAnimation()
         return
-      game.state.start "play" if button.levelNumber is 1
+      @game.levelNumber = button.levelNumber
+      game.state.start "play"
     whenOver: (button) =>
       button.children[1].loadTexture "textBlockSelected"
     whenOut: (button) =>

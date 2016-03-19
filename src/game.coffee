@@ -26,7 +26,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       die: 5
       wrong: 4
       right: 4
-    levels: 1
+    levels: 20
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState
@@ -37,3 +37,5 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
   game.state.add "langSelect", new langSelect
   # Start the "boot" state
   game.state.start "boot"
+  game.playerData = 
+    levelsComplete: new Array(game.globals.levels)
