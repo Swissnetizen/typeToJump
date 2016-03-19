@@ -51,6 +51,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       # @jump() if (k.isDown m.SPACEBAR) and @body.onFloor()
       @endLevel() if @game.physics.arcade.intersects this.body, @game.level.end.body
     die: ->
+      @game.playSound "die"
       timeTaken = 300 #ms
       respawnFaster = 100 #ms
       @emitter.x = @x 
@@ -75,9 +76,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       @jumpAnimation = t
       @body.velocity.y = -250
       #sound
-      number = @game.rand.between 0, @game.globals.sounds.jump - 1
-      console.log number
-      @game.sound.play "jump" + number
+      @game.playSound "jump"
     endLevel: ->
       console.log "END LEVEL"
 

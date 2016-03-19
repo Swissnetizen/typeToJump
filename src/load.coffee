@@ -94,4 +94,7 @@ define ["Phaser"], (Phaser) ->
       @loader "audio", "assets/sounds/", "", ".wav", [
         "right"
       ].concat sounds
+      @game.playSound = (name) =>
+        number = @game.rand.between 0, @game.globals.sounds[name] - 1
+        @game.sound.play  name + number
   return exports

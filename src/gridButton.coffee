@@ -33,8 +33,7 @@ define ["Phaser"], (Phaser) ->
     whenOut: (button) =>
       @loadTexture "bgNormal"
     whenDown: =>
-      number = @game.rand.between 0, @game.globals.sounds.select - 1
-      @game.sound.play "select" + number
+      @game.playSound "select"
     downAnimation: () =>
       t = @game.add.tween this
       t.to({
