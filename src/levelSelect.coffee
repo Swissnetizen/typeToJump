@@ -18,7 +18,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button = new GridButton game, x, y, @levelSelect
         ## Button
         graphicName = "lockedLevel"
-        graphicName = "tilemap" if i is 0
+        graphicName = "levelMinimap" + i if i is 0
         graphic = @game.add.sprite 0, 0, graphicName
         button.levelNumber = i+1
         graphic.anchor.set 0.5, 0.5
