@@ -27,7 +27,9 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       else if code is m.RIGHT
         newCoords[0] = @level.x + 1
       else if code is m.ENTER or code is m.SPACEBAR
-        @pressEvent.dispatch @structure[@level.y][@level.x], @level
+        element = @structure[@level.y][@level.x]
+        element.whenDown() if element.whenDown
+        @pressEvent.dispatch element, @level
       if @coordExists newCoords[0], newCoords[1]
         @level.x = newCoords[0]
         @level.y = newCoords[1]

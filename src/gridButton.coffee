@@ -7,6 +7,7 @@ define ["Phaser"], (Phaser) ->
       @anchor.set 0.5, 0.5
       @onInputOver.add @whenOver
       @onInputOut.add @whenOut
+      @onInputDown.add @whenDown
       @input.useHandCursor = on
       @originalCoords = 
         x: x
@@ -31,6 +32,9 @@ define ["Phaser"], (Phaser) ->
       @loadTexture "bgSelected"
     whenOut: (button) =>
       @loadTexture "bgNormal"
+    whenDown: =>
+      number = @game.rand.between 0, @game.globals.sounds.select - 1
+      @game.sound.play "select" + number
     downAnimation: () =>
       t = @game.add.tween this
       t.to({
