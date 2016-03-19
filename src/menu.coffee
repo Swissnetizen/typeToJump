@@ -30,7 +30,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
           selector: on
       )
       @grid.makeGridItem = @makeButton
-      @grid.pressEvent = @pressEvent
+      @grid.pressEvent.add @pressEvent
       @grid.render 0, 0
       return
     toggleSound: ->

@@ -50,7 +50,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
     create: ->
       @game.world.setBounds 0, 0, @grid.maxW/2, @grid.maxH/2 
       @grid.render()
-      @grid.pressEvent = @levelSelect
+      @grid.pressEvent.add @levelSelect
       @makeBackButton()
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit

@@ -3,6 +3,8 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
     constructor: (game, x, y, properties) ->
       @isSelector = properties.selector
       super game, x, y, properties
+      @pressEvent = new Phaser.Signal()
+      @game = game
     render: (x=0, y=0, fn) ->
       super fn
       c = @coordStructure[y][x]
@@ -25,7 +27,7 @@ define ["Phaser", "grid"], (Phaser, Grid) ->
       else if code is m.RIGHT
         newCoords[0] = @level.x + 1
       else if code is m.ENTER or code is m.SPACEBAR
-        @pressEvent @structure[@level.y][@level.x], @level if @pressEvent
+        @pressEvent.dispatch @structure[@level.y][@level.x], @level
       if @coordExists newCoords[0], newCoords[1]
         @level.x = newCoords[0]
         @level.y = newCoords[1]
