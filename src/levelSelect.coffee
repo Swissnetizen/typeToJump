@@ -2,6 +2,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
   class LevelSelect extends Phaser.State
     preload: ->
       @game = game
+      @game.input.keyboard.clearCaptures()
       @grid = new Grid(
         game, 
         @game.globals.width/2,
@@ -14,6 +15,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
             h: 50
           selector: on
       )
+      @setupCheatCode()
       @grid.makeGridItem = (game, x, y, i) =>
         button = new GridButton game, x, y, @levelSelect
         ## Button
@@ -59,3 +61,27 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @backButton = @game.add.button 10, 10, "backButton", @exit 
     exit: =>
       @game.state.start "menu"
+    setupCheatCode: ->
+      upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP)
+      downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN)
+      leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT)
+      rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
+      aKey = game.input.keyboard.addKey(Phaser.Keyboard.A)
+      bKey = game.input.keyboard.addKey(Phaser.Keyboard.B)
+      upKey.onUp.addOnce ->
+        upKey.onUp.addOnce ->
+          downKey.onUp.addOnce ->
+            downKey.onUp.addOnce ->
+              leftKey.onUp.addOnce ->
+                rightKey.onUp.addOnce ->
+                  leftKey.onUp.addOnce ->
+                    rightKey.onUp.addOnce ->
+                      bKey.onUp.addOnce ->
+                        aKey.onUp.addOnce ->
+                          console.log "CHEATER"
+                          complete = []
+                          for v in new Array(@game.globals.levels)
+                            complete.push yes
+                          console.log complete
+                          @game.playerData.levelsComplete = complete
+                          @game.state.start "levelSelect"

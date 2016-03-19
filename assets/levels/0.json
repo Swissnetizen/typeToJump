@@ -104,7 +104,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "randomise":"",
+     "randomise":"off",
      "spee":"",
      "speed":"150",
      "wordList":"0"

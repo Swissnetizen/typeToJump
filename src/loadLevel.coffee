@@ -49,8 +49,11 @@ define ["Phaser", "player"], (Phaser, Player) ->
     number = map.properties.wordList or 1
     wordList = game.getL10nString number, "wordList"
     game.level.wordList = wordList or []
-    try game.level.wordList.randomise = on if map.properties.randomise.length > 0 or map.properties.randomize.length > 0
-    game.level.wordsUsed = 0
+    try 
+      game.level.wordList.randomise = on if map.properties.randomise.length is "on"
+    catch 
+      game.level.wordList.randomise = off
+    game.level.wordsUsed = 0 unless game.level.wordsUsed
   #loops through objects layer
   makeObjects = (game, map) ->
     return unless map.objects.objects

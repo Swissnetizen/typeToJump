@@ -9,6 +9,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
         x: x
         y: y
       @labels = []
+      @game.level.wordsUsed -= 1
       for v, i in new Array(3)
         @makeLabel null, null, i
       @wordLabel = @labels[0]
