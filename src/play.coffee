@@ -12,6 +12,9 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @capsLockWarning = @game.add.image 650, 160, "capsLockWarning"
       @capsLockWarning.visible = no
       @makeBackButton()
+      @game.add.text 620, 200, @game.level.number+1 + "/" + @game.globals.levels,
+        fill: "#FFFFFF"
+        font: "25px Futura"
     update: ->
       @game.player.update() if @game.player
       if CapsLock.isOn()

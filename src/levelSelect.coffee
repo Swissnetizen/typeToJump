@@ -42,7 +42,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button
     levelSelect: (button) =>
       n = button.levelNumber
-      unless @game.playerData.levelsComplete[n-1] or n is 0
+      unless @game.playerData.levelsComplete[n-1] or n is 0 or @game.globals.unlockAll
         button.shakeAnimation()
         return
       @game.levelNumber = button.levelNumber

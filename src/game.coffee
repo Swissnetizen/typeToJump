@@ -27,6 +27,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       wrong: 4
       right: 4
     levels: 20
+    unlockAll: on
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState
@@ -44,5 +45,4 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       @[key] = revision[key]
     console.log @
   game.playerData.write.bind game.playerData
-  game.playerData.levelsComplete = [true, true, true, true, true, true, true, true, true, true]
 
