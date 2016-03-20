@@ -8,7 +8,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       console.log "CREATED"
       @game.world.setBounds 0, 0, @game.globals.width, @game.globals.height
       nameLabel = @game.add.text(@game.world.centerX, 80, "Name",
-        font: "50px Arial"
+        font: "50px " + @game.globals.fontFamily
         fill: "#ffffff")
       nameLabel.anchor.setTo 0.5, 0.5
       # Add a mute button
@@ -46,7 +46,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       b = new GridButton(game, x, y, @pressEvent)
       b.number = i
       text = game.add.text 0, 0, texts[i], {
-        font: "30px Futura"
+        font: "30px " + @game.globals.fontFamily
       }
       text.anchor.set 0.5, 0.5
       b.addChild text
