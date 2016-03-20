@@ -43,6 +43,7 @@
             "19": "Misspell"
         },
         "wordList": {
+            "-1": [""],
             "0": [
                 "do", "re", "mi", "fa", "so",
                 "la", "ti"
@@ -51,10 +52,10 @@
                 "fa", "st", "er"
             ],
             "2": [
-                "ur", "my", "m8", "OK", "m8"
+                "ur", "my", "m8", "ok", "m8"
             ],
             "3": [
-                "iam", "rly", "hip"
+                "iam", "rly", "hip", "dan", "yu"
             ],
             "4":[
                 "iam", "so", "meta"
@@ -67,6 +68,27 @@
             ],
             "7": [
                 "mispellor", "misspelur"
+            ],
+            "8": [
+                "cat", "pat", "dog", "mat", "rug"
+            ],
+            "9": [
+                "oi", "m8", "ru"
+            ],
+            "11": [
+                "one", "nine", "eight", "nine"
+            ],
+            "10": [
+                "metre", "gram", "kelvin", "ampere"
+            ],
+            "15": [
+                "slow", "day", "to", "day"
+            ],
+            "17": [
+                "dis", "is", "so", "bad"
+            ],
+            "08": [
+                "x", "is", "y", "plus", "one"
             ]
         }
     },
@@ -88,8 +110,8 @@
                 "* There are two extra terms for the GPL",
                 "=> This whole program is licensed under the GPL≥3"
             ],
-            "creditPress": "Premu G por vidi la permilsilo. Premu ia klava por reen",
-            "licPress": "Premu ia klavo por reen"
+            "creditPress": "Premu G por vidi la permilsilo. Premu ian alian klavon por reen",
+            "licPress": "Premu ian klavon por reen"
         },
         "level": {
             "0": "Tajpu por salti",
@@ -108,27 +130,28 @@
             "13": "Tanka parado",
             "14": "La averto",
             "15": "Akcidento je E7",
-            "16": "I S M E T A",
+            "16": "M E T A A S",
             "17": "Doubla spaca",
             "18": "Pafilo glisa",
             "19": "Misspell"
         },
         "wordList": {
+            "-1": [""],
             "0": [
                 "do", "re", "mi", "fa", "so",
                 "la", "ti"
             ],
             "1": [
-                "pli", "rap", "id"
+                "pli", "rap", "ida"
             ],
             "2": [
-                "ur", "my", "m8", "OK", "m8"
+                "vi", "mia", "ulo", "ok"
             ],
             "3": [
                 "mi", "moj", "osa"
             ],
             "4":[
-                "iam", "so", "meta"
+                "mi", "est", "tre", "metae"
             ],
             "5": [
                 "grado", "malalt", "auto", "nur"
@@ -139,7 +162,83 @@
             "7": [
                 "mispellor", "misspelur"
             ],
-            "9": []
+            "8": [
+                "kat", "jen", "jam", "met", "kio"
+            ],
+            "9": [
+                "oi", "m8", "ru"
+            ]
+        }
+    },
+    "fr": {
+        "menu": {
+            "play": "Jouer",
+            "lang": "Langue",
+            "credits": "Fait par",
+            "creditScreen": [
+                "Fait par swissnetizen.ch",
+                "Merci à Strangelette pour le music",
+                "Kamparano pour m'aidé avec le traduction Esperanto",
+                "Code source disponible à github.com/swissnetizen/typeToJump"
+            ],
+            "licScreen": [
+                "* This program uses the Phaser.io framework written by Richard Davey underthe MIT license.",
+                "* All code in the src/ folder is under the GPL≥3; Copyright swissnetizen 2016.",
+                "* All assets in assets/ **except music.ogg** are under CC-BY-SA; Copyright swissnetizen 2016.",
+                "* There are two extra terms for the GPL",
+                "=> This whole program is licensed under the GPL≥3"
+            ],
+            "creditPress": "Appuyez sur G pour voir le licence. Appuyez sur une autre clé pour retourner",
+            "licPress": "Appuyez sur une clé pour retourner"
+        },
+        "level": {
+            "0": "Tappez pour sauter",
+            "1": "Tri-bloque",
+            "2": "Communication Radio",
+            "3": "Limitation de vitesse dépassée",
+            "4": "Bloques en béton",
+            "5": "Communication sous-marin",
+            "6": "Pont du Golden Gate",
+            "7": "World Trade Centre",
+            "8": "Fonction linéaire",
+            "9": "Fait métrique",
+            "10": "Douane à 50",
+            "11": "10%",
+            "12": "Airlock 1           ",
+            "13": "Parade de blindés",
+            "14": "La avertissment",
+            "15": "Accident sur E7",
+            "16": "I S M E T A",
+            "17": "double interligne",
+            "18": "Pistol planeur",
+            "19": "Misspell"
+        },
+        "wordList": {
+            "0": [
+                "do", "re", "mi", "fa", "so",
+                "la", "ti"
+            ],
+            "1": [
+                "pl", "us", "vi", "te"
+            ],
+            "2": [
+                "ur", "my", "m8", "ok"
+            ],
+            "3": [
+                "iam", "rly", "hip"
+            ],
+            "4":[
+                "iam", "so", "meta"
+            ],
+            "5": [
+                "slope", "down", "cars", "only"
+            ],
+            "6": [
+                "pre", "pare", "for", "fire"
+            ],
+            "7": [
+                "mispellor", "misspelur"
+            ]
         }
     }
 }

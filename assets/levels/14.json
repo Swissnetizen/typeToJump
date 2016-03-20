@@ -107,7 +107,7 @@
      "randomise":"1",
      "spee":"",
      "speed":"75",
-     "wordList":"0"
+     "wordList":"-1"
     },
  "renderorder":"right-down",
  "tileheight":20,

@@ -104,10 +104,10 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "randomise":"1",
+     "randomise":"on",
      "spee":"",
      "speed":"137.5",
-     "wordList":"0"
+     "wordList":"8"
     },
  "renderorder":"right-down",
  "tileheight":20,

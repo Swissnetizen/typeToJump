@@ -47,6 +47,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     game.level.floor = floor
     #makeSlabs game, map, dangerLayer
   makeWordList = (game, map) ->
+    try old = game.level.wordList
     number = map.properties.wordList or 1
     wordList = game.getL10nString number, "wordList", yes
     game.level.wordList = wordList or []
@@ -54,7 +55,10 @@ define ["Phaser", "player"], (Phaser, Player) ->
       game.level.wordList.randomise = on if map.properties.randomise.length is "on"
     catch 
       game.level.wordList.randomise = off
-    game.level.wordsUsed = 0 unless game.level.wordsUsed
+    if old is game.level.wordList
+      return
+    else
+      game.level.wordsUsed = 0
   #loops through objects layer
   makeObjects = (game, map) ->
     return unless map.objects.objects
