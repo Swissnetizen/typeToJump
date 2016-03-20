@@ -73,7 +73,10 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @inputText.reset x, y
       @inputText.text = ""
     whenPress: (a, b, c, d, e) =>
-      key = b.key
+      console.log "PRESS"
+      console.log a
+      console.log b
+      key = a
       g = @game.globals.deleteOptions 
       return if key is "Enter" or key is "Tab"
       if key is @nextChar() and (g.autoDelAll or g.autoDelOne)
