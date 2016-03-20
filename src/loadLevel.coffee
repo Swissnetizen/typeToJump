@@ -45,7 +45,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     # set var
     game.level.dangerLayer = dangerLayer
     game.level.floor = floor
-  #  makeSlabs game, map, dangerLayer
+    #makeSlabs game, map, dangerLayer
   makeWordList = (game, map) ->
     number = map.properties.wordList or 1
     wordList = game.getL10nString number, "wordList"
@@ -94,8 +94,8 @@ define ["Phaser", "player"], (Phaser, Player) ->
     game.level.end = marker
   makeSlabs = (game, map, layer) ->
     group = game.add.group()
-    game.slabs = game.add.group()
-    map.createFromTiles 2, null, "slab", layer, group
+    game.slabs = group
+    map.createFromTiles 2, null, "", layer, group
     console.log group.children
     for child in group.children
       x = child.x 
@@ -103,6 +103,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
       w = child.width
       h = child.height
       game.physics.arcade.enable child
+      game.body.setSize 20, 10, 0, 10
       game.debug.body child
       map.removeTileWorldXY x, y, w, h, layer
 

@@ -6,34 +6,52 @@
             "credits": "Credits"
         },
         "level": {
-            "0": "Type the word to jump",
-            "1": "",
-            "2": "",
+            "0": "Type to jump",
+            "1": "Tri-block",
+            "2": "Radio Communication",
             "3": "Speed Limit Exceeded",
-            "4": "",
-            "5": "",
-            "6": "",
-            "7": "",
-            "8": "",
-            "9": "",
-            "10": "",
-            "11": "",
-            "12": "",
-            "13": "",
-            "14": "",
-            "15": "",
-            "16": "",
-            "17": "",
-            "18": "",
-            "19": ""
+            "4": "Concrete Blocks",
+            "5": "Submarine Communication",
+            "6": "Golden Gate Bridge",
+            "7": "World Trade Centre",
+            "8": "Linear Function",
+            "9": "Metricated",
+            "10": "Border Fence at 50",
+            "11": "10%",
+            "12": "Airlock 1",
+            "13": "Tank Parade",
+            "14": "The Warning",
+            "15": "Accident on E7",
+            "16": "I S M E T A",
+            "17": "Double Spaced",
+            "18": "Glider Gun",
+            "19": "Misspell"
         },
         "wordList": {
             "0": [
                 "do", "re", "mi", "fa", "so",
-                "la", "ti", "do"
+                "la", "ti"
             ],
             "1": [
                 "fa", "st", "er"
+            ],
+            "2": [
+                "ur", "my", "m8", "OK", "m8"
+            ],
+            "3": [
+                "iam", "rly", "hip"
+            ],
+            "4":[
+                "iam", "so", "meta"
+            ],
+            "5": [
+                "slope", "down", "cars", "only"
+            ],
+            "6": [
+                "pre", "pare", "for", "fire"
+            ],
+            "7": [
+                "mispellor", "misspelur"
             ]
         }
     }
