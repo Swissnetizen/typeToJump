@@ -46,7 +46,10 @@ define ["Phaser"], (Phaser) ->
         try
           @game.l10n[@game.lang][type][name]
         catch 
-          undefined
+          try
+            @game.l10n["en"][type][name]
+          catch 
+            undefined
       @game.menuL10n = (name) =>
         @game.getL10nString name, "menu"
       @game.levelL10n = (number) =>
@@ -82,6 +85,8 @@ define ["Phaser"], (Phaser) ->
         "tileset"
         "caret"
         "capsLockWarning"
+        "slab"
+        "plate"
       ]
     generateNames: (prefix, number) ->
       names = []
