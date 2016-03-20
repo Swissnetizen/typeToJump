@@ -7,7 +7,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       # Name of the @game
       console.log "CREATED"
       @game.world.setBounds 0, 0, @game.globals.width, @game.globals.height
-      nameLabel = @game.add.text(@game.world.centerX, 80, "Name",
+      nameLabel = @game.add.text(@game.world.centerX, 80, "Gidsuck",
         font: "50px " + @game.globals.fontFamily
         fill: "#ffffff")
       nameLabel.anchor.setTo 0.5, 0.5
