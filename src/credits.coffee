@@ -1,33 +1,31 @@
 define ["Phaser"], (Phaser) ->
   class CreditState extends Phaser.State
     create: ->
-      credits = """
-* This program uses the Phaser.io framework written by Richard Davey underthe MIT license. 
-* All code in the src/ folder is under the GPL≥3; Copyright swissnetizen 2016.
-* All assets in assets/ **except music.ogg** are under CC-BY-SA; Copyright swissnetizen 2016.
-* There are two extra terms for the GPL
-=> This whole program is licensed under the GPL≥3
-      """
+      credits = @game.menuL10n @game.mType + "Screen"
       @created = yes
       label = @game.add.text 30, 0, credits, {
-          font: "20px Futura"
+          font: "20px " + @game.globals.fontFamily
           fill: "#FFFFFF"
           wordWrap: on
           wordWrapWidth: 720
         }
-      returnText = "Press any key to return"
+      returnText = @game.menuL10n @game.mType+"Press"
       returnLabel = @game.add.text @game.globals.width/2, @game.globals.height-20, returnText, {
-          font: "20px Futura"
+          font: "20px " + @game.globals.fontFamily
           fill: "#00FF00"
           wordWrap: on
           wordWrapWidth: 720
         }
       returnLabel.anchor.set 0.5, 0.5
-      @game.input.keyboard.addCallbacks this, ->
+      @game.input.keyboard.addCallbacks this, (info) ->
         return unless @created
         @created = no
         @game.keyPressDisabled = yes
         setTimeout(=>
           @game.keyPressDisabled = no
         , 750)
-        @game.state.start "menu"
+        if info.keyCode is Phaser.KeyCode.G
+          @game.mType = "lic"
+          @game.state.start "credits"
+        else
+          @game.state.start "menu"

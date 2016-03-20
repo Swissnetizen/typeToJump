@@ -48,7 +48,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
     #makeSlabs game, map, dangerLayer
   makeWordList = (game, map) ->
     number = map.properties.wordList or 1
-    wordList = game.getL10nString number, "wordList"
+    wordList = game.getL10nString number, "wordList", yes
     game.level.wordList = wordList or []
     try 
       game.level.wordList.randomise = on if map.properties.randomise.length is "on"
@@ -75,7 +75,7 @@ define ["Phaser", "player"], (Phaser, Player) ->
   makeText = (game) ->
     text = game.levelL10n game.level.number
     game.level.label = game.add.text game.globals.width/2, 50, text, {
-        font: "25px Futura"
+        font: "25px " + game.globals.fontFamily
         fill: "#FFFFFF"
         wordWrap: on
         wordWrapWidth: game.globals.width/2

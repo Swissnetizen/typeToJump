@@ -14,10 +14,10 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @makeBackButton()
       @game.add.text 620, 200, @game.level.number+1 + "/" + @game.globals.levels,
         fill: "#FFFFFF"
-        font: "25px Futura"
+        font: "25px " + @game.globals.fontFamily
       @deaths = @game.add.text 100, 200, "0",
         fill: "#FFFFFF"
-        font: "25px Futura"
+        font: "25px " + @game.globals.fontFamily
     update: ->
       @game.player.update() if @game.player
       if CapsLock.isOn()

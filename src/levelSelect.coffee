@@ -34,7 +34,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         button.onInputOut.add @whenOut
         ## Actual text
         label = @game.add.text 30, 0, i + 1 + "", {
-          font: "30px Futura"
+          font: "30px " + @game.globals.fontFamily
           fill: "#000000"
         }
         label.anchor.set 0.5, 0.5

@@ -16,7 +16,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @wordLabel.reset 0, 0
       #Input box
       textStyle =
-        font: "40px Futura"
+        font: "40px " + @game.globals.fontFamily
         fill: "#00CC00"
       @inputText = @game.add.text 0, 0, "", textStyle
       @inputText.anchor.set 0, 0.5
@@ -30,7 +30,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @game.input.keyboard.addCallbacks this, null, @whenBS, @whenPress
     makeLabel: (x=0, y=0, index, autoAddChild=yes) =>
       textStyle =
-        font: "40px Futura"
+        font: "40px " + @game.globals.fontFamily
         fill: "#FFFFFF"
       wordLabel = @game.add.text x, y, "", textStyle
       wordLabel.anchor.set 0.5, 0.5
@@ -46,7 +46,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       @wordLabel = @labels[index]
       @wordLabel.reset 0, 0
       @wordLabel.setStyle        
-        font: "40px Futura"
+        font: "40px " + @game.globals.fontFamily
         fill: "#FFFFFF"
     shiftLabels: (skip) ->
       for label in @labels
@@ -61,7 +61,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
           }, 150, Phaser.Easing.Bounce.In)
         t.onComplete.add (label) ->
           label.setStyle
-            font: "16px Futura"
+            font: "16px " + @game.globals.fontFamily
             fill: "#00FF00"
         t.start()
     setLabelText: (word) ->

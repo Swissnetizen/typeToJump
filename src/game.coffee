@@ -28,6 +28,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       right: 4
     levels: 20
     unlockAll: on
+    fontFamily: "Futura"
   # Define states
   game.state.add "boot", new boot.BootState
   game.state.add "load", new load.LoadState

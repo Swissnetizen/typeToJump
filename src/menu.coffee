@@ -58,6 +58,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         when 1
           @game.state.start "langSelect"
         when 2
+          @game.mType = "credit"
           @game.state.start "credits"
     start: ->
       @game.state.start "levelSelect"

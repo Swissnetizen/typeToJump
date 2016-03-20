@@ -3,7 +3,22 @@
         "menu": {
             "play": "Play",
             "lang": "Lang",
-            "credits": "Credits"
+            "credits": "Credits",
+            "creditScreen": [
+                "Made by swissnetizen.ch",
+                "Thanks to Strangelette for the music",
+                "Kamparano for help with the Esperanto translation",
+                "Source code avaliable at github.com/swissnetizen/typeToJump"
+            ],
+            "licScreen": [
+                "* This program uses the Phaser.io framework written by Richard Davey underthe MIT license.",
+                "* All code in the src/ folder is under the GPL≥3; Copyright swissnetizen 2016.",
+                "* All assets in assets/ **except music.ogg** are under CC-BY-SA; Copyright swissnetizen 2016.",
+                "* There are two extra terms for the GPL",
+                "=> This whole program is licensed under the GPL≥3"
+            ],
+            "creditPress": "Press G to see licensing informaiton. Press any other key to return",
+            "licPress": "Press any key to return"
         },
         "level": {
             "0": "Type to jump",
@@ -53,6 +68,77 @@
             "7": [
                 "mispellor", "misspelur"
             ]
+        }
+    },
+    "eo": {
+        "menu": {
+            "play": "Ludi",
+            "lang": "Lingvo",
+            "credits": "Atribuo",
+            "creditScreen": [
+                "Fariĝis per swissnetizen.ch",
+                "Dankon al Strangelette por la muziko",
+                "Kamparano por helpo kun la Esperanta tradukado",
+                "Fontkodo trouveble je github.com/swissnetizen/typeToJump"
+            ],
+            "licScreen": [
+                "* This program uses the Phaser.io framework written by Richard Davey underthe MIT license.",
+                "* All code in the src/ folder is under the GPL≥3; Copyright swissnetizen 2016.",
+                "* All assets in assets/ **except music.ogg** are under CC-BY-SA; Copyright swissnetizen 2016.",
+                "* There are two extra terms for the GPL",
+                "=> This whole program is licensed under the GPL≥3"
+            ],
+            "creditPress": "Premu G por vidi la permilsilo. Premu ia klava por reen",
+            "licPress": "Premu ia klavo por reen"
+        },
+        "level": {
+            "0": "Tajpu por salti",
+            "1": "Tri-bloko",
+            "2": "Radia komunikado",
+            "3": "Rapidlimo superiĝis",
+            "4": "Betona bloko",
+            "5": "Submarŝipa komunikado",
+            "6": "Ore porda ponto",
+            "7": "Mondkomerca Centro",
+            "8": "Linera funkcio",
+            "9": "Metriĝis",
+            "10": "Landlima barilo kun 50",
+            "11": "10%",
+            "12": "Aerokluzo 1           ",
+            "13": "Tanka parado",
+            "14": "La averto",
+            "15": "Akcidento je E7",
+            "16": "I S M E T A",
+            "17": "Doubla spaca",
+            "18": "Pafilo glisa",
+            "19": "Misspell"
+        },
+        "wordList": {
+            "0": [
+                "do", "re", "mi", "fa", "so",
+                "la", "ti"
+            ],
+            "1": [
+                "pli", "rap", "id"
+            ],
+            "2": [
+                "ur", "my", "m8", "OK", "m8"
+            ],
+            "3": [
+                "mi", "moj", "osa"
+            ],
+            "4":[
+                "iam", "so", "meta"
+            ],
+            "5": [
+                "dekliv", "malalt", "auto", "nure"
+            ],
+            "6": [
+                "pre", "tas", "por", "pafi"
+            ],
+            "7": [
+                "mispellor", "misspelur"
+            ],
         }
     }
 }

@@ -42,9 +42,17 @@ define ["Phaser"], (Phaser) ->
     setupL10n: ->
       @game.l10n = @game.cache.getJSON "l10n"
       @loadL10nDefault()
-      @game.getL10nString = (name, type) =>
+      @game.getL10nString = (name, type, wantArray=no) =>
         try
-          @game.l10n[@game.lang][type][name]
+          value = @game.l10n[@game.lang][type][name]
+          if typeof value is "string" or wantArray
+            value
+          else
+            paragraph = ""
+            for line in value
+              paragraph += line + "\n "
+            paragraph
+
         catch 
           try
             @game.l10n["en"][type][name]
