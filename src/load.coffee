@@ -109,9 +109,7 @@ define ["Phaser"], (Phaser) ->
       for key of soundList
         newSounds = @generateNames key, soundList[key]
         sounds = sounds.concat newSounds
-      @loader "audio", "assets/sounds/", "", ".wav", [
-        "right"
-      ].concat sounds
+      @loader "audio", "assets/sounds/", "", ".wav", sounds
       @game.playSound = (name) =>
         number = @game.rand.between 0, @game.globals.sounds[name] - 1
         @game.sound.play  name + number
