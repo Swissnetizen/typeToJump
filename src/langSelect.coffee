@@ -24,6 +24,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @grid.makeGridItem = @makeButton
       @grid.pressEvent.add @pressEvent
       @grid.render 0, 0
+      @game.addCredit @game
       return
     toggleSound: ->
       @game.sound.mute = !@game.sound.mute

@@ -5,6 +5,7 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
     create: ->
       @game = game
       @game.end = no
+      @game.addCredit @game
       @game.input.keyboard.clearCaptures()
       @game.level = {} unless @game.level?
       @game.level.number = @game.levelNumber or 0

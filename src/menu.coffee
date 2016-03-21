@@ -34,6 +34,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
         font: "16px " + @game.globals.fontFamily
         fill: "#ffffff")
       swissflag = @game.add.sprite 100, @game.world.height - 20, "swiss"
+      @game.addCredit @game
       # SUISSE !
       @grid.makeGridItem = @makeButton
       @grid.pressEvent.add @pressEvent

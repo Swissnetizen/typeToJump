@@ -56,6 +56,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @grid.render()
       @grid.pressEvent.add @levelSelect
       @makeBackButton()
+      @game.addCredit @game
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
       @game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE).onDown.add @exit

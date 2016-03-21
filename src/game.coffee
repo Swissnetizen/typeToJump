@@ -47,5 +47,9 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
     window.localStorage.setItem "playerData", JSON.stringify this
   game.playerData.write()
   game.playerData.write.bind game.playerData
+  game.addCredit = (game) ->
+    game.add.text(game.globals.width-20, game.globals.height, "swissnetizen.ch",
+      font: "20px " + game.globals.fontFamily
+      fill: "#ffffff").anchor.set 1, 1
 
 
