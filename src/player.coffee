@@ -44,6 +44,8 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       # keys
       k = @game.input.keyboard
       m = Phaser.Keyboard
+      if @body.onFloor()
+        @rotation = 0
       if @body.onFloor() and @frame isnt 1 and @game.globals.slant
         @frame = 1
       else if not @body.onFloor() and @frame isnt 0 or not @game.globals.slant

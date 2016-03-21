@@ -58,6 +58,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @makeBackButton()
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
+      @game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE).onDown.add @exit
       @backButton = @game.add.button 10, 10, "backButton", @exit 
     exit: =>
       @game.state.start "menu"

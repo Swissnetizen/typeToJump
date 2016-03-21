@@ -40,6 +40,7 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @deaths.text = @game.playerData.deaths
     makeBackButton: ->
       @game.input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add @exit
+      @game.input.keyboard.addKey(Phaser.Keyboard.BACKSPACE).onDown.add @exit
       @backButton = @game.add.button 10, 10, "backButton", @exit 
     exit: =>
       @game.state.start "levelSelect"
