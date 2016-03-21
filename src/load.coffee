@@ -116,9 +116,8 @@ define ["Phaser"], (Phaser) ->
             "wrong": 500/1000
           }[name]
         @game.sound.play name + number, volume
-      @loader "audio", "assets/music/", "song", ".wav", [
-        "0", "1", "2"
-      ]
+      for i in @range 3
+        @game.load.audio "song" + i, ["assets/music/"+i+".ogg", "assets/music/"+i+".wav"]
     range: (number) ->
       x = []
       for v, i in new Array(number)
