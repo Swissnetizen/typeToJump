@@ -80,7 +80,7 @@
                 "one", "nine", "eight", "nine"
             ],
             "10": [
-                "metre", "gram", "kelvin", "ampere"
+                "metre", "gram", "second", "kelvin"
             ],
             "15": [
                 "slow", "day", "to", "day"
@@ -183,7 +183,7 @@
                 "dis", "is", "so", "bad"
             ],
             "08": [
-                "x", "is", "y", "plus", "one"
+                "x", "est", "y", "kun", "unu"
             ]
         }
     },

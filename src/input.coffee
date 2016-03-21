@@ -78,7 +78,7 @@ define ["Phaser", "caret"], (Phaser, Caret) ->
       console.log b
       key = a
       g = @game.globals.deleteOptions 
-      return if key is "Enter" or key is "Tab"
+      return if b.key is "Enter" or b.key is "Tab" or b.key is "Escape" or (b.key is "Backspace")
       if key is @nextChar() and (g.autoDelAll or g.autoDelOne)
         @inputText.text += key
       else if key isnt @nextChar() and g.autoDelAll
