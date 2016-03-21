@@ -239,7 +239,7 @@
                 "pl", "us", "vi", "te"
             ],
             "2": [
-                "ur", "my", "m8", "ok"
+                "tu", "es", "ma", "ami"
             ],
             "3": [
                 "iam", "rly", "hip"
@@ -251,10 +251,31 @@
                 "slope", "down", "cars", "only"
             ],
             "6": [
-                "pre", "pare", "for", "fire"
+                "pre", "pare", "pour", "fire"
             ],
             "7": [
                 "mispellor", "misspelur"
+            ],
+            "8": [
+                "kat", "jen", "jam", "met", "kio"
+            ],
+            "9": [
+                "eh", "ami", "ca", "va"
+            ],
+            "11": [
+                "un", "neuf", "huit", "neuf"
+            ],
+            "10": [
+                "metre", "gram", "kelvin", "ampere"
+            ],
+            "15": [
+                "jour", "lent", "au", "jour", "d", "hui"
+            ],
+            "17": [
+                "cest", "trop", "nul"
+            ],
+            "08": [
+                "x", "est", "y", "et", "unu"
             ]
         }
     }
