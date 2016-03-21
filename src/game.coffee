@@ -39,12 +39,13 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
   game.state.add "langSelect", new langSelect
   # Start the "boot" state
   game.state.start "boot"
-  game.playerData = 
+  game.playerData = (JSON.parse window.localStorage.getItem "playerData") or {
     levelsComplete: new Array(game.globals.levels)
     deaths: 0
-  game.playerData.write = (revision) ->
-    for key in revision
-      @[key] = revision[key]
-    console.log @
+  }
+  game.playerData.write = ->
+    window.localStorage.setItem "playerData", JSON.stringify this
+  game.playerData.write()
   game.playerData.write.bind game.playerData
+
 

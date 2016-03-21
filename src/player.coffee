@@ -84,6 +84,7 @@ define ["Phaser", "actor"], (Phaser, Actor) ->
       completed[@game.level.number] = true
       @game.playerData.levelsComplete= completed
       @game.levelNumber = @game.level.number + 1
+      game.playerData.write()
       @game.state.start "play"
 
 
