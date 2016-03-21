@@ -3,6 +3,7 @@
 js/*
 build/*
 build.zip
+built.zip
 
 *.sublime-project
 *.sublime-workspace

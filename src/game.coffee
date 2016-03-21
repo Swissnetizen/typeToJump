@@ -2,7 +2,7 @@
 requirejs.config (
     baseUrl: "js"
     paths: 
-      Phaser:   "../phaser"
+      Phaser:   "phaser"
 )
 require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "langSelect"], (Phaser, boot, load, menu, play, LevelSelect, CreditsState, langSelect) ->
   "use strict"
@@ -27,7 +27,7 @@ require ["Phaser", "boot", "load", "menu", "play", "levelSelect", "credits", "la
       wrong: 4
       right: 4
     levels: 20
-    unlockAll: on
+    unlockAll: off
     fontFamily: "Futura, Oswald, Impact, Helvetica, sans-serif"
   # Define states
   game.state.add "boot", new boot.BootState
