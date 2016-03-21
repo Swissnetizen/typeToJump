@@ -96,6 +96,7 @@ define ["Phaser"], (Phaser) ->
         "capsLockWarning"
         "slab"
         "plate"
+        "swiss"
       ]
     generateNames: (prefix, number) ->
       names = []
