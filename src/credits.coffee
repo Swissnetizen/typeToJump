@@ -3,7 +3,16 @@ define ["Phaser"], (Phaser) ->
     create: ->
       credits = @game.menuL10n @game.mType + "Screen"
       @created = yes
-      label = @game.add.text 30, 0, credits, {
+      pos = 0
+      if @game.mType is "credit"
+        creditHeader = @game.add.text @game.globals.width/2, 0, (@game.menuL10n "creditHeader"), 
+          font: "35px " + @game.globals.fontFamily
+          fill: "#FFFFFF"
+          wordWrap: on
+          wordWrapWidth: 720
+        creditHeader.anchor.set 0, 0
+        pos = 45
+      label = @game.add.text 60, pos, credits, {
           font: "20px " + @game.globals.fontFamily
           fill: "#FFFFFF"
           wordWrap: on

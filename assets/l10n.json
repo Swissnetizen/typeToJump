@@ -10,14 +10,15 @@
                 "Kamparano for help with the Esperanto translation",
                 "Source code avaliable at github.com/swissnetizen/typeToJump"
             ],
+            "creditHeader": "Thanks for playing!",
             "licScreen": [
                 "* This program uses the Phaser.io framework written by Richard Davey underthe MIT license.",
-                "* All code in the src/ folder is under the GPL≥3; Copyright swissnetizen 2016.",
-                "* All assets in assets/ **except music.ogg** are under CC-BY-SA; Copyright swissnetizen 2016.",
+                "* All code in the src/ folder is under the GPL≥3.",
+                "* All assets in assets/ **except music.ogg** are under CC-BY-SA",
                 "* There are two extra terms for the GPL",
-                "=> This whole program is licensed under the GPL≥3"
+                "© swissnetizen.ch 2016"
             ],
-            "creditPress": "Press G to see licensing informaiton. Press any other key to return",
+            "creditPress": "Press G to see licensing information. Press any other key to return",
             "licPress": "Press any key to return"
         },
         "level": {
@@ -97,6 +98,7 @@
             "play": "Ludi",
             "lang": "Lingvo",
             "credits": "Atribuo",
+            "creditHeader": "Dankon por Ludi!",
             "creditScreen": [
                 "Fariĝis per swissnetizen.ch",
                 "Dankon al Strangelette por la muziko",
@@ -148,7 +150,7 @@
                 "vi", "mia", "ulo", "ok"
             ],
             "3": [
-                "mi", "moj", "osa"
+                "mi", "tre", "moj", "osas"
             ],
             "4":[
                 "mi", "est", "tre", "metae"
@@ -181,7 +183,7 @@
                 "dis", "is", "so", "bad"
             ],
             "08": [
-                "x", "stas", "y", "kun", "one"
+                "x", "is", "y", "plus", "one"
             ]
         }
     },

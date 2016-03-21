@@ -4,10 +4,22 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
   exports.PlayState = class PlayState extends Phaser.State
     create: ->
       @game = game
+      @game.end = no
       @game.input.keyboard.clearCaptures()
       @game.level = {} unless @game.level?
       @game.level.number = @game.levelNumber or 0
-      levelLoader @game, "level" + @game.levelNumber
+      success = levelLoader @game, "level" + @game.levelNumber
+      unless success
+        @game.end = yes
+        if @game.level.number is 20
+          @game.mType = "credit"
+          @game.state.start "credits"
+        else
+          @game.add.text 620, 200, "ER 404" + @game.globals.levels,
+            fill: "#FFFFFF"
+            font: "25px " + @game.globals.fontFamily
+          @game.state.start "levelSelect"
+        return
       @game.level.inputBox = new InputBox game, 370, 175
       @capsLockWarning = @game.add.image 650, 160, "capsLockWarning"
       @capsLockWarning.visible = no
@@ -19,6 +31,7 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
         fill: "#FFFFFF"
         font: "25px " + @game.globals.fontFamily
     update: ->
+      return if @game.end
       @game.player.update() if @game.player
       if CapsLock.isOn()
         @capsLockWarning.visible = yes
