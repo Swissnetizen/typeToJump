@@ -7,7 +7,7 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       # Name of the @game
       console.log "CREATED"
       @game.world.setBounds 0, 0, @game.globals.width, @game.globals.height
-      nameLabel = @game.add.text(@game.world.centerX, 80, "Gidsuck",
+      nameLabel = @game.add.text(@game.world.centerX, 80, "Gidsuk",
         font: "50px " + @game.globals.fontFamily
         fill: "#ffffff")
       nameLabel.anchor.setTo 0.5, 0.5
@@ -39,7 +39,8 @@ define ["Phaser", "gridSelector", "gridButton"], (Phaser, Grid, GridButton) ->
       @grid.makeGridItem = @makeButton
       @grid.pressEvent.add @pressEvent
       @grid.render 0, 0
-      return
+      @game.playing = no
+      @game.playingMusic.stop() if @game.playingMusic
     toggleSound: ->
       @game.sound.mute = !@game.sound.mute
       @muteButton.frame = if @game.sound.mute then 1 else 0

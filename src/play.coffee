@@ -31,6 +31,8 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @deaths = @game.add.text 100, 200, "0",
         fill: "#FFFFFF"
         font: "25px " + @game.globals.fontFamily
+      @game.playing = yes 
+      @doMusic()
     update: ->
       return if @game.end
       @game.player.update() if @game.player
@@ -45,4 +47,22 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
       @backButton = @game.add.button 10, 10, "backButton", @exit 
     exit: =>
       @game.state.start "levelSelect"
+      @game.playing = no
+    doMusic: ->
+      return if @game.hasMusic
+      @nextSong()
+      console.log "hi"
+    nextSong: =>
+      console.log "uuuu"
+      unless @game.playing
+        return @game.hasMusic = no
+      console.log "play"
+      number = @game.rand.between 0, 2
+      @game.playingMusic = @game.add.audio "right0" unless @game.hasMusic?
+      @game.playingMusic = @game.add.audio "song" + number if @game.hasMusic?
+      @game.hasMusic = yes
+      @game.playingMusic.onPlay.add ->
+        console.log "FUCKING PLAYING"
+      @game.playingMusic.onStop.add @nextSong
+      @game.playingMusic.play()
   return exports

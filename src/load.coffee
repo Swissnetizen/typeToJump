@@ -112,7 +112,13 @@ define ["Phaser"], (Phaser) ->
       @loader "audio", "assets/sounds/", "", ".wav", sounds
       @game.playSound = (name) =>
         number = @game.rand.between 0, @game.globals.sounds[name] - 1
-        @game.sound.play  name + number
+        volume = {
+            "wrong": 500/1000
+          }[name]
+        @game.sound.play name + number, volume
+      @loader "audio", "assets/music/", "song", ".wav", [
+        "0", "1", "2"
+      ]
     range: (number) ->
       x = []
       for v, i in new Array(number)
