@@ -58,8 +58,8 @@ define ["Phaser", "loadLevel", "input", "capsLock"], (Phaser, levelLoader, Input
         return @game.hasMusic = no
       console.log "play"
       number = @game.rand.between 0, 2
-      @game.playingMusic = @game.add.audio "right0" unless @game.hasMusic?
-      @game.playingMusic = @game.add.audio "song" + number if @game.hasMusic?
+      @game.playingMusic = @game.add.audio "right0", 0/1000 unless @game.hasMusic?
+      @game.playingMusic = @game.add.audio "song" + number, 250/1000 if @game.hasMusic?
       @game.hasMusic = yes
       @game.playingMusic.onPlay.add ->
         console.log "FUCKING PLAYING"

@@ -113,7 +113,11 @@ define ["Phaser"], (Phaser) ->
       @game.playSound = (name) =>
         number = @game.rand.between 0, @game.globals.sounds[name] - 1
         volume = {
-            "wrong": 500/1000
+            "wrong": 100/1000
+            "right": 400/1000
+            "jump": 400/1000
+            "select": 600/1000
+            "die": 600/1000
           }[name]
         @game.sound.play name + number, volume
       for i in @range 3
