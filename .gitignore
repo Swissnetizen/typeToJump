@@ -1,7 +1,8 @@
 /bower_components/
 /node_modules/
 js/*
-
+build/*
+build.zip
 
 *.sublime-project
 *.sublime-workspace
