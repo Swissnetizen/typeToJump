@@ -11,5 +11,6 @@ define ["Phaser"], (Phaser) ->
       @game.physics.startSystem Phaser.Physics.ARCADE
       @game.state.start "load"
       @game.rand = new Phaser.RandomDataGenerator()
+      @game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL
       return
   return exports
