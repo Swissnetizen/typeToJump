@@ -11,13 +11,17 @@ But in general the translations are OK*.
 The Esperanto translation is more complete than the French, though. 
 Kamparano is currently trying to fix the Esperanto translation (but he hasn't sent his revised files yet).
 
-Unfortunately I haven't switched to `systemJS` yet, but I think I'll take a break from gamedev and learn how to do it. 
-Deploying the game itself was much easier because of my new makefile and the fact that itch.io accepts .zip files. 
-The other reason that I've deployed it to itch.io is because my game's width is too large for my site and would break the design.
+The game itself is significantly more polished than my previous one with much better music management, a more polished level select that even includes previews.
+
+**[Play it online right now!](https://swissnetizen.itch.io/gidsuk)**
 
 # Technology Stack
 The technology stack is the same as before, Phaser and a makefile, but the code is transpiled from CoffeeScript.
 The levels are made in Tiled and exported as JSON.
+
+Unfortunately I haven't switched to `systemJS` yet, but I think I'll take a break from gamedev and learn how to do it. 
+Deploying the game itself was much easier because of my new makefile and the fact that itch.io accepts .zip files. 
+The other reason that I've deployed it to itch.io is because my game's width is too large for my site and would break the design.
 # Copying
 
 The code for the game is licensed under the GNU General Public Licence, version 3 or later.
